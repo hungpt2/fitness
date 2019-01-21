@@ -1,0 +1,20 @@
+
+<svg width="11px" height="7px" viewBox="0 0 11 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Meals_details-2" transform="translate(-888.000000, -792.000000)">
+            <g id="LUNCH" transform="translate(620.000000, 158.000000)">
+                <g id="DIRECTIONS" transform="translate(20.000000, 610.000000)">
+                    <g id="arrow_dropdown" transform="translate(248.000000, 21.000000)">
+                        <g>
+                            <rect id="bound" x="0" y="0" width="12" height="12"></rect>
+                            <path d="M5.7461559,6.83163716 L9.28536375,3.2924293 C9.67472824,2.90306481 10.3042304,2.90128235 10.6974773,3.29452931 C11.0880016,3.6850536 11.084239,4.32198113 10.6995773,4.70664286 L6.45273661,8.95348357 C6.15408661,9.25213357 5.71415924,9.32276197 5.34792742,9.16200811 C5.2353291,9.11382169 5.13024437,9.04415275 5.03927,8.95317839 L0.792429299,4.70633769 C0.40306481,4.3169732 0.401282353,3.68747109 0.794529308,3.29422413 C1.1850536,2.90369984 1.82198113,2.9074624 2.20664286,3.29212412 L5.7461559,6.83163716 Z" id="Combined-Shape" fill="#AB131C"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

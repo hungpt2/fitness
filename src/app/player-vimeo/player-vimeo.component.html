@@ -1,0 +1,29 @@
+<div class="simple-view">
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <div class="simple-container" [ngStyle]="{'height' : simpleHeight}">
+            <div class="title-container">
+              <div class="btn-container">
+                <a class="close-btn" (click)="closeVideo.emit(false)">
+                  <img src="assets/img/ic-close-red.svg" alt="">
+                </a>
+              </div>
+            </div>
+
+            <div class="main-container pb-0">
+              <div id="handstick">
+                <!-- <div (click)="playVideo()" [hidden]="isPlay||hidePlayBtn" class="play-btn" [ngStyle]="{'top' : playbtn.playTop, 'left': playbtn.playLeft, 'height': playbtn.playHeight, 'width': playbtn.playWidth }"></div> -->
+                <iframe [src]="safeUrl" style="max-width: 640px;max-height: 640px;width: 100%;height: 100vh;"
+                  frameborder="0" title="FRONT SQUAT" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""
+                  data-ready="true" [id]="video"></iframe>
+              </div>
+            </div>
+
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

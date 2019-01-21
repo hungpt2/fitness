@@ -1,0 +1,34 @@
+<nav class="login-navbar">
+  <div class="logo-container">
+    <img src="assets/img/logo.png" alt="">
+  </div>
+  <a class="sign-in-btn" routerLink="/sign-up">Sign Up</a>
+</nav>
+
+<div class="login-container">
+  <div class="login-wrapper">
+    <div *ngIf="!invalid">
+      <h2 class="caption">Email address</h2>
+      <p class="description">Enter your email address which you have purchased the plan with.</p>
+      <!-- <form> -->
+      <form name="form" (ngSubmit)="f.form.valid && onNext()" #f="ngForm" novalidate>
+        <div class="ls-form-control">
+          <input type="email" name="email" [(ngModel)]="email" #emailAddress="ngModel" required>
+          <label for="email">Email address</label>
+          <div *ngIf="f.submitted && !emailAddress.valid" class="help-block">Email required</div>
+        </div>
+        <button type="submit" class="login-btn">Next</button>
+      </form>
+      <!-- </form> -->
+    </div>
+    <!-- First Step -->
+    <div *ngIf="invalid">
+      <h2 class="caption">Email is Invalid</h2>
+      <p class="description">It seems that you have not purchased the plan yet. Please go to:
+        <a href="https://www.laurensimpsonfitness.com/plans.html">https://www.laurensimpsonfitness.com/plans.html</a>
+        and purchase your plan first.</p>
+      <button type="button" class="login-btn" (click)="onOk()">Ok</button>
+    </div>
+    <!-- Second Step -->
+  </div>
+</div>

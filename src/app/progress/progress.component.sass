@@ -1,0 +1,81 @@
+@import '../styles/progress'
+
+.progress-content
+	.cursor-hover
+		cursor: grab
+		cursor : -o-grab
+		cursor : -moz-grab
+		cursor : -webkit-grab
+	.row
+		margin-top: 10px
+	.title
+		font-size: 18px
+		font-weight: 600
+		margin: 0
+		display: inline-block
+		text-transform: uppercase
+	.upload-container
+		margin-top: 20px
+		.upload
+			text-align: center
+			border: dashed 2px #e6e6e8
+			width: 210px
+			height: 210px
+			padding: 48px 0
+			&:hover
+				color: #000
+			img
+				width: 68px
+				height: 62px
+			p
+				font-size: 20px
+				font-family: $accent-font
+				margin: 8px 0 0
+
+	+resp-min($medium)
+		.progres-box
+			height: 250px
+	
+	+resp-min($large)
+		.progres-box
+			height: 270px
+
+	+resp-min($extra-large)
+		.progres-box
+			height: 255px
+
+	+resp-max($medium)
+		.upload-container
+			text-align: center
+
+	+resp-max($small)
+		.row
+			margin-top: 0
+		.title
+			display: block
+
+.simple-view
+	.simple-container
+		max-width: 420px
+		text-align: center
+		height: auto
+		padding: 20px
+		box-shadow: 0 24px 24px 0 rgba(0, 0, 0, 0.2), 0 0 24px 0 rgba(0, 0, 0, 0.12)
+		border-radius: 8px
+		.caption-img
+			width: 40px
+			height: 40px
+		.content
+			font-size: 17px
+			font-family: $accent-font
+			color: #0f121b
+		.ls-border-btn
+			margin: 20px 5px 0
+			padding:
+				left: 0
+				right: 0
+			width: 134px
+
+	+resp-max($small)
+		.simple-container
+			width: 90%

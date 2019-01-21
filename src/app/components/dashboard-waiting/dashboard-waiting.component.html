@@ -1,0 +1,37 @@
+<div class="blur">
+  <div *ngIf="!isSpecial && !isExpired" class="blur-head">
+    <img src="assets/img/ic-clock.svg" alt="">
+  </div>
+  <div *ngIf="isSpecial && !hidePlanTemp && !isExpired" class="blur-head-special">
+    <div class="blur-head-special-box">
+      <div class="blur-head-special-box-item">
+        <div class="item-time">{{displayTime.days}}</div>
+        <span class="item-label">Day</span>
+      </div>
+      <div class="blur-head-special-box-item">
+        <div class="item-time">{{displayTime.hours}}</div>
+        <span class="item-label">Hours</span>
+      </div>
+      <div class="blur-head-special-box-item">
+        <div class="item-time">{{displayTime.minutes}}</div>
+        <span class="item-label">minutes</span>
+      </div>
+      <div class="blur-head-special-box-item">
+        <div class="item-time">{{displayTime.seconds}}</div>
+        <span class="item-label">seconds</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isSpecial && !hidePlanTemp && !isExpired" class="blur-body">
+    <p>{{skuLabel ? skuLabel : 'Your program'}} will be starting soon</p>
+  </div>
+  <div *ngIf="isSpecial && hidePlanTemp" class="blur-body hidePlateTemp">
+    <p>View your {{type}} plan through the menu</p>
+  </div>
+  <div *ngIf="!isSpecial && !isExpired" class="blur-body">
+    <p>We’re currently creating your {{type === 'workout' ? 'training' : type}} plan and it will be ready in 24 hours.</p>
+  </div>
+  <div *ngIf="isExpired" class="blur-body">
+    <p>Your plan has been completed please click on <span style="text-transform: capitalize">{{type}}s</span> Menu to access your {{type}} plan.</p>
+  </div>
+</div>

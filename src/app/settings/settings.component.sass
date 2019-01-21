@@ -1,0 +1,180 @@
+@import '../../gb-mixins'
+
+.ls-navbar-title
+	+resp-max($medium)
+		display: block
+
+.settings-container
+	background-color: #ffffff
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12)
+	padding: 20px
+	margin-bottom: 20px
+	.settings-title
+		font-size: 18px
+		font-weight: 600
+		text-transform: uppercase
+		margin:
+			top: 0px
+			bottom: 40px
+		text-align: left
+	.user-photo-container
+		width: 120px
+		height: 120px
+		border-radius: 100%
+		overflow: hidden
+		margin: auto
+		cursor: pointer
+		border: 1px solid #ffffff
+		box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14)
+		img
+			width: 100%
+			height: 100%
+	.user-btn-container
+		margin: 15px 0
+		a
+			margin: 0 3px 
+			width: 36px
+			height: 36px
+
+.info-container
+	text-align: left
+	box-shadow: 0 1px 0 0 #e6e6e8
+	padding-bottom: 30px
+	margin-bottom: 30px
+	&:last-child
+		box-shadow: none
+	.info-title
+		font-size: 14px
+		color: $accent-color-f
+		font-family: $accent-font
+		text-transform: uppercase
+		line-height: 1
+		margin:
+			top: 0
+			bottom: 15px
+	.separate
+		margin: 0px 0 10px
+		position: relative
+	.separate-two
+		display: inline-block
+		margin-right: 15px
+	label
+		font-size: 14px
+		font-family: $accent-font
+		color: #929292
+		margin-bottom: 4px
+		display: inline-block
+	input,
+	select
+		padding: 0 10px
+		border-radius: 6px
+		background-color: #ffffff
+		border: solid 1px #e6e6e8
+		font-family: $accent-font
+		font-size: 17px
+		color: #000000
+		height: 36px
+		width: 200px
+	.email-input
+		width: 100%
+		max-width: 420px
+	.change-email
+		font-family: $accent-font
+		font-size: 14px
+		color: $accent-color-f
+		margin-left: 10px
+	.personal
+		input
+			padding-right: 45px
+		.height, .inch
+			width: 100px
+		.unit-ft
+			position: absolute
+			bottom: 5px
+			right: 58%
+			color: $accent-color-f
+			font-size: 17px
+		.unit-inch
+			position: absolute
+			bottom: 5px
+			right: 15px
+			color: $accent-color-f
+			font-size: 17px
+	.height-input,
+	.kg-input
+		&:after
+			content: 'cm'
+			color: $accent-color-f
+			font-size: 17px
+			position: absolute
+			bottom: 5px
+			right: 10px
+	.kg-input
+		&:after
+			content: 'kg'
+	.lbs-input
+		&:after
+			content: 'lbs'
+	.height-input-inch
+		&:after
+			content: 'ft/inches'
+	.date
+		select
+			width: 100px
+			margin-bottom: 4px
+		.mounth
+			margin: 0 5px 4px
+	.confirm-btn
+		width: 120px
+		height: 36px
+		border-radius: 6px
+		background-color: $accent-color-f
+		font-family: $accent-font
+		font-size: 17px
+		text-align: center
+		color: #ffffff
+		line-height: 2
+		margin: 30px 11% 50px 0
+		float: right
+
+	+resp-min($extra-large)
+		.confirm-btn
+			margin-right: 22%
+
+	+resp-max($medium)
+		.confirm-btn
+			margin-right: 50px
+
+	+resp-max($semi-medium)
+		.confirm-btn
+			margin-right: 25px
+
+	+resp-max($small)
+		.date
+			.mounth
+				margin: 0 0 4px
+
+.users
+	margin-top: 20px
+	input
+		margin:
+			right: 5px
+			bottom: 10px
+	a
+		width: 191px
+		height: 36px
+		border-radius: 6px
+		background-color: $accent-color-f
+		font-family: $accent-font
+		font-size: 17px
+		color: #ffffff
+		line-height: 2
+		text-align: center
+
+.help-block
+	font-size: 13px
+	color: red
+	position: absolute
+
+.input-attach
+	display: none

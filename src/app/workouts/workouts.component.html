@@ -1,0 +1,186 @@
+<app-sidebar></app-sidebar>
+
+<div class="ls-container">
+
+	<div class="ls-navbar-container">
+		<main class="ls-navbar-main">
+			<div class="container">
+				<div class="ls-nv-content">
+					<div class="ls-navbar-title">
+						<h2>Workouts</h2>
+					</div>
+					<div class="ls-navbar-date">
+						<div class="meals-view">
+							<a class="arrow arrow-prev" [routerLink]="['/workouts', nextWeek(-1), 1]">
+								<i class="icon-arrow"></i>
+							</a>
+							<a class="week-btn">Week {{selectedWeek}}</a>
+							<a class="arrow arrow-next" [routerLink]="['/workouts', nextWeek(1), 1]">
+								<i class="icon-arrow"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+	<!-- Navbar Conteiner -->
+
+	<div class="ls-content">
+
+		<div class="container">
+
+			<div class="days-container">
+				<ul>
+					<li (click)="onSelectDay(0)">
+						<a [ngClass]="{'active' : selectedDay == 0 }">Day 1</a>
+					</li>
+					<li (click)="onSelectDay(1)">
+						<a [ngClass]="{'active' : selectedDay == 1 }">Day 2</a>
+					</li>
+					<li (click)="onSelectDay(2)">
+						<a [ngClass]="{'active' : selectedDay == 2 }">Day 3</a>
+					</li>
+					<li (click)="onSelectDay(3)">
+						<a [ngClass]="{'active' : selectedDay == 3 }">Day 4</a>
+					</li>
+					<li (click)="onSelectDay(4)">
+						<a [ngClass]="{'active' : selectedDay == 4 }">Day 5</a>
+					</li>
+					<li (click)="onSelectDay(5)">
+						<a [ngClass]="{'active' : selectedDay == 5 }">Day 6</a>
+					</li>
+					<li (click)="onSelectDay(6)">
+						<a [ngClass]="{'active' : selectedDay == 6 }">Day 7</a>
+					</li>
+				</ul>
+			</div>
+			<div class="btn-container">
+				<p class="title">{{workouts.name}}</p>
+				<a class="siple-view" (click)="simpleView = true ">Simplified View</a>
+				<a class="siple-view" (click)="sendMail()">
+					<img src="assets/img/ic-email.svg" alt="">
+				</a>
+				<a class="siple-view" (click)="simpleView = true;printElem(true)">
+					<img src="assets/img/ic-print.svg" alt="">
+				</a>
+			</div>
+			<div *ngIf="!(workouts.exercises_grouped && workouts.exercises_grouped.length != 0)">
+				<img *ngIf="!isSpecial" class="img-responsive" src="{{workouts.image_url}}" alt="">
+				<img *ngIf="workouts.exercises_grouped && isSpecial" class="img-responsive" src="http://res.cloudinary.com/ddsadubut/image/upload/workout-day/Rest.png"
+				 alt="">
+			</div>
+			<div class="row" *ngIf="workouts.exercises_grouped && workouts.exercises_grouped.length != 0">
+				<div class="col-md-4" *ngFor="let workout_group of workouts.exercises_grouped">
+					<div class="workout-content" id="workout-box" [ngClass]="{'workout-auto' : 1 }">
+						<h3 class="td-box-title">
+							<span *ngIf="workout_group.title" style="color: #000; margin-right: 4px;">{{workout_group.title}}</span>{{workout_group.name}}</h3>
+						<div class="dragscroll box-container" (appScrollWorkout)="scrollChange($event, workout_group)">
+							<ng-container *ngFor="let workout of workout_group.items">
+								<div class="box-image" (click)="exerciseSelected(workout)" *ngIf="1" [style.width.%]="1 ? 94 : 100">
+									<img src="{{getResource('images', workout.exercise.name)}}" alt="">
+									<a class="check-btn" *ngIf="workout.done">
+										<img src="assets/img/ic-complete.svg" alt="">
+									</a>
+									<div class="thubmnail-video">
+										<!-- <span>►</span> -->
+										<div></div>
+									</div>
+								</div>
+							</ng-container>
+							<div></div>
+							<!-- Margin -->
+							<ng-container *ngFor="let workout of workout_group.items">
+								<div class="info" [style.width.%]="1 ? 94 : 100">
+									<div class="info-container">
+										<p class="td-box-components">
+											<span *ngIf="workout.sets">{{workout.sets}} Sets</span>
+											<span *ngIf="workout.sets && workout.reps" class="spacer"></span>
+											<span *ngIf="workout.reps">{{workout.reps}}</span>
+											<span *ngIf="workout.sec && workout.reps" class="spacer"></span>
+											<span *ngIf="workout.sec">{{workout.sec}} Sec</span>
+										</p>
+										<button class="more-info" *ngIf="!workout.moreInfo" [disabled]="!workout.exercise.description" [style.opacity]="!workout.exercise.description ? '0.6' : '1'"
+										 (click)="workout.moreInfo = workout.moreInfo ? false : true;">More Info</button>
+										<button class="more-info" *ngIf="workout.moreInfo" (click)="workout.moreInfo = workout.moreInfo ? false : true;">Hide</button>
+									</div>
+									<div class="descr" *ngIf="workout.moreInfo">
+										<p>{{workout.exercise.description}}</p>
+									</div>
+									<button class="ls-done-btn" [class.ls-done-btn-active]="workout.done" (click)="setDoneExcercise(workout.id, workout)">
+										<div class="ls-done-wrapper">
+											<i class="icon-ic-done"></i>Done</div>
+									</button>
+								</div>
+								<!-- .info -->
+							</ng-container>
+
+						</div>
+						<!-- .box-container -->
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="simple-view" *ngIf="simpleView">
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<div class="simple-container" [ngStyle]="{'height' : simpleHeight}">
+
+						<div class="title-container">
+							<p class="title">Simplified View</p>
+							<div class="btn-container">
+								<a class="square-btn" (click)="sendMail()">
+									<img src="assets/img/ic-email.svg" alt="">
+								</a>
+								<a class="square-btn" (click)="printElem()">
+									<img src="assets/img/ic-print.svg" alt="">
+								</a>
+								<a class="close-btn" (click)="simpleView = false">
+									<img src="assets/img/ic-close-red.svg" alt="">
+								</a>
+							</div>
+						</div>
+
+						<div class="main-container" id="main-container">
+
+							<p class="gn-title">Week {{selectedWeek}}</p>
+							<h3 class="td-box-title">Day {{selectedDay + 1}}</h3>
+							<h3 class="day-title">{{workouts.name}}</h3>
+
+							<div class="work-simple-wrapper" *ngFor="let workoutGroup of workouts.exercises_grouped">
+								<h3 class="td-box-title" *ngIf="workoutGroup.title">
+									<span style="color: #000; margin-right: 4px;">{{workoutGroup.title}}</span>
+								</h3>
+								<br *ngIf="workoutGroup.title" />
+								<h3 class="td-box-title" *ngIf="!workoutGroup.title">{{workoutGroup.name}}</h3>
+								<ng-container *ngFor="let workout of workoutGroup.items; let index = index; ">
+									<h3 class="td-box-title marginLeft" *ngIf="workoutGroup.title">
+										<span style="color: #000; margin-right: 4px;">Exercise {{index + 1}}</span>{{workout.exercise.name}}
+									</h3>
+									<p class="value" [style.margin-left]="workoutGroup.title ? '20px': 'auto'">
+										<span *ngIf="workout.sets">{{workout.sets}} Sets</span>
+										<span *ngIf="workout.sets && workout.reps" class="spacer"></span>
+										<span *ngIf="workout.reps">{{workout.reps}}</span>
+										<span *ngIf="workout.sec && workout.reps" class="spacer"></span>
+										<span *ngIf="workout.sec">{{workout.sec}} Sec</span>
+									</p>
+								</ng-container>
+
+							</div>
+
+						</div>
+
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+<app-player-vimeo [video]="video" (closeVideo)="onCLoseVideo($event)" *ngIf="videoPop"></app-player-vimeo>

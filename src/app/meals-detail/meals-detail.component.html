@@ -1,0 +1,223 @@
+<app-sidebar></app-sidebar>
+
+<div class="ls-container">
+
+	<div class="ls-navbar-container">
+		<main class="ls-navbar-main">
+			<div class="container">
+				<div class="ls-nv-content">
+					<div class="ls-navbar-title">
+						<h2>Meals</h2>
+					</div>
+					<div class="ls-navbar-date">
+						<div class="meals-view">
+							<a class="arrow" [style.color]="ls_have ? '#ab131c' : '#e6e6e8'" [routerLink]="['/meals-detail', selectDay(meal.id, -1)]">
+								<i class="icon-arrow"></i>
+							</a>
+							<a class="week-btn">{{meal.name}}</a>
+							<a class="arrow arrow-next" [routerLink]="['/meals-detail', selectDay(meal.id, +1)]">
+								<i class="icon-arrow"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+	<!-- Navbar Conteiner -->
+
+	<div class="ls-content">
+
+		<div class="container">
+
+			<div class="btn-container">
+				<a class="back-btn" (click)="goBack()">
+					<i class="icon-arrow"></i> Back</a>
+				<a class="siple-view" (click)="simpleView = true;">Simplified View</a>
+			</div>
+
+			<div class="row" *ngIf="meal">
+				<div class="col-md-4" *ngFor="let meal_item of meal.meal_plan_day; let index = index">
+					<div class="meals-details" [style.height]="equalHeight(meal_item.change || meal_item.isOpenDirection )">
+						<h3 class="td-box-title">Meal {{index + 1}} - {{meal_item.name_full}}</h3>
+						<div class="box-image" [ngStyle]="{'background-image' : 'url('+ meal_item.image_url +')'}">
+							<a class="check-btn" *ngIf="meal_item.done">
+								<img src="assets/img/ic-complete.svg" alt="">
+							</a>
+						</div>
+						<p class="details">MACRONUTRIENTS - MEAL {{index + 1}}</p>
+						<p class="td-box-components">{{meal_item.sum_nutrients.calories_sum | round}} kcal
+							<span class="spacer"></span>{{meal_item.sum_nutrients.carb_sum | round}}g Carbs
+							<span class="spacer"></span>{{meal_item.sum_nutrients.fat_sum | round}}g Fat
+							<span class="spacer"></span>{{meal_item.sum_nutrients.protein_sum | round}}g Protein</p>
+						<div class="ingredients">
+							INGREDIENTS
+							<ul>
+								<ng-container *ngIf="!meal_item.isSpecial">
+									<li [class.change-ingredients]="meal_item.change" *ngFor="let item of meal_item.items;">
+										<span *ngIf="!meal_item.change" class="spacer"></span>
+										<span>{{titleIngredient(item)}}</span>
+										<a *ngIf="meal_item.change" (click)="chooseIngredient(item)">
+											<img src="assets/img/down-arrow.svg" alt="">
+										</a>
+									</li>
+								</ng-container>
+								<ng-container *ngIf="meal_item.isSpecial">
+									<ng-container *ngFor="let item of meal_item.items;">
+										<li *ngFor="let itemIngredient of item.meal_food_item.recipe_ingredients;">
+											<span class="spacer"></span>{{itemIngredient}}
+										</li>
+									</ng-container>
+								</ng-container>
+							</ul>
+							<div class="directions" *ngIf="meal_item.isSpecial">
+								DIRECTIONS
+								<div class="ic-arrow" (click)="meal_item.isOpenDirection = !meal_item.isOpenDirection; processLayoutDirection(meal_item.isOpenDirection)">
+									<img *ngIf="!meal_item.isOpenDirection" src="assets/img/ic-arrow-down.svg" alt="">
+									<img *ngIf="meal_item.isOpenDirection" src="assets/img/ic-arrow-up.svg" alt="">
+								</div>
+								<ng-container *ngIf="meal_item.isOpenDirection">
+									<ng-container *ngFor="let item of meal_item.items;">
+										<ng-container *ngIf="item.meal_food_item.directions">
+											<p *ngFor="let text of item.meal_food_item.directions ">{{text}}</p>
+										</ng-container>
+									</ng-container>
+								</ng-container>
+								<div *ngIf="!meal_item.isOpenDirection" class="line"></div>
+							</div>
+
+						</div>
+						<div class="btn-container">
+							<a *ngIf="!meal_item.isSpecial" class="ls-done-btn" [ngClass]="{'ls-done-state' : meal_item.change}" (click)="equalHeight(meal_item.change);updateImageMeal(meal_item.change, meal_item); meal_item.change = meal_item.change ? false : true;">
+								<div>
+									<i class="icon-ic-change"></i>Change</div>
+							</a>
+							<a *ngIf="meal_item.isSpecial" class="ls-done-btn" [ngClass]="{'ls-done-state' : meal_item.change}" (click)="equalHeight(meal_item.change); chooseIngredient(meal_item.items[0], true, meal_item)">
+								<div>
+									<i class="icon-ic-change"></i>Change</div>
+							</a>
+							<a class="ls-done-btn" [ngClass]="{'ls-done-state' : meal_item.done}">
+								<div class="ls-done-wrapper" (click)="submitDone(meal.id, meal_item.meal_type)">
+									<i class="icon-ic-done"></i>Done</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="simple-view" *ngIf="simpleView">
+
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<div class="simple-container" [ngStyle]="{'height' : simpleHeight}">
+
+						<div class="title-container">
+							<p class="title">Simplified View</p>
+							<div class="btn-container">
+								<a class="square-btn" (click)="sendMail()">
+									<img src="assets/img/ic-email.svg" alt="">
+								</a>
+								<a class="square-btn" (click)="printElem()">
+									<img src="assets/img/ic-print.svg" alt="">
+								</a>
+								<a class="close-btn" (click)="simpleView = false">
+									<img src="assets/img/ic-close-red.svg" alt="">
+								</a>
+							</div>
+						</div>
+
+						<div class="main-container" id="main-container">
+
+							<p class="gn-title">{{meal.name}}</p>
+
+							<div class="wrapper">
+								<h3 class="td-box-title">{{meal.date}}</h3>
+								<h4 class="td-box-subtitle">Daily Macronutrients</h4>
+								<p class="td-box-components">
+									<span>{{meal.daily_nutrients.calories_sum | round}} kcal</span>
+									<span class="spacer"></span>
+									<span>{{meal.daily_nutrients.carb_sum | round}}g Carbs</span>
+									<span class="spacer"></span>
+									<span>{{meal.daily_nutrients.fat_sum | round}}g Fat</span>
+									<span class="spacer"></span>
+									<span>{{meal.daily_nutrients.protein_sum | round}}g Protein</span>
+								</p>
+								<div class="meal-wrapper" *ngFor="let meal_item of meal.meal_plan_day; let index = index;">
+									<h3 class="td-box-title">Meal {{index + 1}} - {{meal_item.name_full}}</h3>
+									<h4 class="td-box-subtitle">MACRONUTRIENTS - MEAL {{index + 1}}</h4>
+									<p class="td-box-components">{{meal_item.sum_nutrients.calories_sum | round}} kcal
+										<span class="spacer"></span>{{meal_item.sum_nutrients.carb_sum | round}}g Carbs
+										<span class="spacer"></span>{{meal_item.sum_nutrients.fat_sum | round}}g Fat
+										<span class="spacer"></span>{{meal_item.sum_nutrients.protein_sum | round}}g Protein</p>
+									<div class="ingredients">
+										<p class="title">Ingredients</p>
+										<ul>
+											<ng-container *ngFor="let item of meal_item.items;">
+												<li *ngIf="!meal_item.isSpecial">
+													<span class="spacer"></span>{{titleIngredient(item)}}
+												</li>
+												<ng-container *ngIf="meal_item.isSpecial">
+													<li *ngFor="let itemIngredient of item.meal_food_item.recipe_ingredients;">
+														<span class="spacer"></span>{{itemIngredient}}
+													</li>
+												</ng-container>
+											</ng-container>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+<div class="simple-view food-view" *ngIf="foodPop">
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<div class="simple-container" [ngStyle]="{'height' : foodHeight}">
+
+						<div class="title-container">
+							<p class="title">Food Swap Options</p>
+							<div class="btn-container">
+								<a class="close-btn" (click)="foodPop = false">
+									<img src="assets/img/ic-close-red.svg" alt="">
+								</a>
+							</div>
+						</div>
+
+						<div class="main-container">
+							<ul class="swap-options">
+								<div *ngIf="swapOptions.length === 0"> No Swapping Item</div>
+								<li *ngFor="let swap of swapOptions" (click)="chooseOption(swap)">
+									<div class="check" [class.check-selected]="select == swap">
+										<img *ngIf="select == swap" src="assets/img/check-mark.svg" alt="">
+									</div> {{swap.name}}
+								</li>
+							</ul>
+							<div class="confirm-container">
+								<button class="ls-done-btn" (click)="confirmFun()">Confirm</button>
+							</div>
+						</div>
+
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

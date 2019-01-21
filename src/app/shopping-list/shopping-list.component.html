@@ -1,0 +1,213 @@
+<app-sidebar></app-sidebar>
+<ng-container *ngIf="!isSpecial || isBooty">
+  <div class="ls-container">
+
+    <div class="ls-navbar-container">
+      <main class="ls-navbar-main">
+        <div class="container">
+          <div class="ls-nv-content">
+            <div class="ls-navbar-title">
+              <h2>Shopping List</h2>
+            </div>
+            <div class="ls-navbar-date">
+              <div class="meals-view">
+                <a class="arrow arrow-prev" [routerLink]="['/shopping', nextWeek(-1)]">
+                  <i class="icon-arrow"></i>
+                </a>
+                <a class="week-btn">Week {{selectedWeek}}</a>
+                <a class="arrow arrow-next" [routerLink]="['/shopping', nextWeek(1)]">
+                  <i class="icon-arrow"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- Navbar Conteiner -->
+
+    <div class="ls-content">
+
+      <div class="container">
+
+        <div class="btn-container">
+          <a class="siple-view" (click)="simpleView = true ">Simplified View</a>
+          <a class="siple-view" (click)="sendMail()">
+            <img src="assets/img/ic-email.svg" alt="">
+          </a>
+          <a class="siple-view" (click)="simpleView = true;printElem(true)">
+            <img src="assets/img/ic-print.svg" alt="">
+          </a>
+
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="btn-container shopping-title-mobile">
+              <p class="title">Shopping List</p>
+            </div>
+          </div>
+          <div class="col-xs-12" *ngFor="let shopping of shoppings">
+            <div class="shopping-item">
+              <h3 class="shopping-item-title">{{shopping.title}}</h3>
+              <a class="shopping-arrow-btn" (click)="shopping.show = shopping.show ? false : true">
+                <img src="assets/img/down-arrow.svg" alt="" [style.transform]="shopping.show ? 'rotate(180deg)' : 'rotate(0deg)'">
+              </a>
+              <div class="shopping-item-container" *ngIf="shopping.show">
+                <ul>
+                  <li *ngFor="let item of shopping.data">
+                    <a (click)="checkMark(item);">
+                      <!-- <div class="check" [ngClass]="{'check-selected' : item.status === 'checked'}">
+                        <img *ngIf="item.status === 'checked'" src="assets/img/check-mark.svg" alt="">
+                      </div> -->
+                      <div class="check" [ngClass]="{'check-selected' : item.status === 'checked' || item.status === true}">
+                        <img *ngIf="item.status === 'checked' || item.status === true" src="assets/img/check-mark.svg" alt="">
+                      </div>
+                      <span>{{ isBooty ? item.value :titleIngredient(item)}}</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="simple-view" *ngIf="simpleView">
+
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <div class="simple-container" [ngStyle]="{'height' : simpleHeight}">
+
+              <div class="title-container">
+                <p class="title">Simplified View</p>
+                <div class="btn-container">
+                  <a class="square-btn">
+                    <img src="assets/img/ic-email.svg" (click)="sendMail()" alt="">
+                  </a>
+                  <a class="square-btn">
+                    <img src="assets/img/ic-print.svg" (click)="printElem()" alt="">
+                  </a>
+                  <a class="close-btn" (click)="simpleView = false">
+                    <img src="assets/img/ic-close-red.svg" alt="">
+                  </a>
+                </div>
+              </div>
+
+              <div class="main-container" id="main-container">
+
+                <p class="gn-title">Week {{selectedWeek}}</p>
+
+                <div *ngFor="let shopping of shoppings">
+                  <div class="shopping-item">
+                    <h3 class="shopping-item-title">{{shopping.title}}</h3>
+                    <div class="shopping-item-container">
+                      <ul>
+                        <li *ngFor="let item of shopping.data">
+                          <a (click)="checkMark(item);">
+                            <!-- <div class="check" [ngClass]="{'check-selected' : (item.status === 'checked' || item.meta.done)}">
+                              <img *ngIf="(item.status === 'checked' || item.meta.done)" src="assets/img/check-mark.svg" alt="">
+                            </div> -->
+                            <div class="check" [ngClass]="{'check-selected' : item.status === 'checked' || item.status === true}">
+                              <img *ngIf="item.status === 'checked' || item.status === true" src="assets/img/check-mark.svg" alt="">
+                            </div>
+                            <span>{{ isBooty ? item.value :titleIngredient(item)}}</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</ng-container>
+<div class="ls-container" *ngIf="isSpecial && !isBooty">
+
+  <div class="ls-navbar-container">
+    <main class="ls-navbar-main">
+      <div class="container">
+        <div class="ls-nv-content">
+          <div class="ls-navbar-title">
+            <h2>Shopping List</h2>
+          </div>
+          <div class="ls-navbar-date">
+            <div class="meals-view">
+              <a class="arrow arrow-prev" [routerLink]="['/shopping', nextWeek(-1)]">
+                <i class="icon-arrow"></i>
+              </a>
+              <a class="week-btn">Week {{selectedWeek}}</a>
+              <a class="arrow arrow-next" [routerLink]="['/shopping', nextWeek(1)]">
+                <i class="icon-arrow"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <!-- Navbar Conteiner -->
+
+  <div class="ls-content">
+
+    <div class="container">
+
+      <div class="simple-container simple-container-special">
+        <div class="main-container" id="main-container">
+
+          <h2 class="gn-title">{{mealsPlanWeek.name}}</h2>
+
+          <div *ngFor="let meal of meals" class="wrapper">
+            <h3 class="td-box-title">{{meal.name}}</h3>
+            <h4 class="td-box-subtitle">Daily Macronutrients</h4>
+            <p class="td-box-components">{{meal.daily_nutrients.calories_sum | round}} kcal
+              <span class="spacer"></span>{{meal.daily_nutrients.carb_sum | round}}g Carbs
+              <span class="spacer"></span>{{ meal.daily_nutrients.fat_sum | round}}g Fat
+              <span class="spacer"></span>{{meal.daily_nutrients.protein_sum | round}}g Protein</p>
+            <div class="meal-wrapper" *ngFor="let meal_item of meal.meal_plan_day; let i = index">
+              <h3 class="td-box-title">Meal {{i + 1}}</h3>
+              <h4 class="td-box-subtitle">MACRONUTRIENTS - MEAL {{i + 1}}</h4>
+              <p class="td-box-components">{{meal_item.sum_nutrients.calories_sum | round}} kcal
+                <span class="spacer"></span>{{meal_item.sum_nutrients.carb_sum | round}}g Carbs
+                <span class="spacer"></span>{{meal_item.sum_nutrients.fat_sum | round}}g Fat
+                <span class="spacer"></span>{{meal_item.sum_nutrients.protein_sum | round}}g Protein</p>
+              <div class="ingredients">
+                <p class="title">Ingredients</p>
+                <ul>
+                  <ng-container *ngFor="let item of meal_item.items;">
+                    <li *ngIf="!meal_item.isSpecial">
+                      <span class="spacer"></span>{{titleIngredient(item)}}
+                    </li>
+                    <ng-container *ngIf="meal_item.isSpecial">
+                      <li *ngFor="let itemIngredient of item.meal_food_item.recipe_ingredients;">
+                        <span class="spacer"></span>{{itemIngredient}}
+                      </li>
+                    </ng-container>
+                  </ng-container>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

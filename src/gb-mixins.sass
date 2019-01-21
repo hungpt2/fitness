@@ -1,0 +1,38 @@
+/* Variabes */
+$accent-color-f: #ab131c
+$accent-color-s: #ee212e
+$accent-color-t: #e70023
+
+$extra-large: 1440px 
+$large: 1200px
+$medium: 992px
+$semi-medium: 768px
+$small: 480px
+
+/* Mixins */
+@mixin resp-max($val)
+	@media only screen and (max-width : $val)
+		@content
+
+@mixin resp-min($val)
+	@media only screen and (min-width : $val)
+		@content
+
+/* Fonts */
+@font-face
+	font-family: 'Antonio'
+	font-weight: 300
+	font-style: normal
+	src: url('/assets/fonts/Antonio-Light.ttf')
+
+@font-face
+	font-family: 'Antonio'
+	font-weight: 600
+	font-style: normal
+	src: url('/assets/fonts/Antonio-Bold.ttf')
+
+@font-face
+	font-family: 'Sweet'
+	src: url('/assets/fonts/SweetSans.otf')
+	
+$accent-font: 'Sweet'

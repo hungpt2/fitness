@@ -1,0 +1,79 @@
+<app-sidebar></app-sidebar>
+
+<div class="ls-container" *ngIf="photo1">
+
+	<div class="ls-navbar-container">
+		<main class="ls-navbar-main">
+			<div class="container">
+				<div class="ls-nv-content">
+					<div class="ls-navbar-title">
+						<h2>Progress</h2>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div> <!-- Navbar Conteiner -->
+	
+	<div class="ls-content">
+
+		<div class="container">
+
+			<div class="btn-container">
+				<a class="back-btn" (click)="goBack()"><img src="assets/img/back.svg" alt=""> Back</a>
+			</div>
+
+			<div class="progress-content">
+				
+				<div class="link-container">
+					<p class="item" style="color: #ee212e;">Upload Photo</p>
+					<div class="hr-line hr-line-active"></div>
+					<p class="item" style="color: #ee212e;">Create Post</p>
+					<div class="hr-line hr-line-active"></div>
+					<p class="item item-active">Share</p>
+				</div>
+
+				<div class="select-container">
+					<a class="select" 
+						[class.select-two-images]="photo2">
+						<img src="{{photo1.photo_url}}" alt="">
+						<p class="img-title" *ngIf="photo1.week || photo1.weight"><span *ngIf="photo1.week">Week {{photo1.week}}</span><span *ngIf="photo1.weight">{{photo1.weight}} kg</span></p>
+					</a>
+					<a class="select"
+						*ngIf="multiPhoto"
+						[class.select-two-images]="photo2">
+						<img src="{{photo2.photo_url}}" alt="">
+						<p class="img-title" *ngIf="photo2 && (photo2.week || photo2.weight)"><span *ngIf="photo2.week">Week {{photo2.week}}</span><span *ngIf="photo2.weight">{{photo2.weight}} kg</span></p>
+					</a>
+					<div class="select-box">
+						<img class="logo" src="assets/img/ic-facebook.svg" alt="">
+						<span>Facebook</span>
+						<a class="state" 
+							(click)="dataProgress.fb = false"
+							*ngIf="dataProgress.fb"><img src="assets/img/on.svg" alt=""></a>
+						<a class="state" 
+							(click)="dataProgress.fb = true"
+							*ngIf="!dataProgress.fb"><img src="assets/img/off.svg" alt=""></a>
+					</div>
+				</div>
+
+				<div class="caption-area" *ngIf="dataProgress.caption || dataProgress.tags">
+					<p class="main-text">{{dataProgress.caption}}</p>
+					<p class="tags">{{dataProgress.tags}}</p>
+				</div>
+				
+				<div class="bottom-btns">
+					<a class="com-btn" routerLink="/progress">Cancel</a>
+					<a class="com-btn" 
+						(click)="save()"
+						routerLink="/progress">Share</a>
+				</div>
+			
+			</div>
+
+		</div> <!-- Progress Content -->
+
+	</div>
+
+</div>
+
+

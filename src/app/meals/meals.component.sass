@@ -1,0 +1,47 @@
+@import '../../gb-mixins'
+
+.meals-content
+	background-color: #fff
+	padding: 20px
+	margin: 10px auto 25px
+	border-radius: 6px
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12)
+	text-align: left
+	position: relative
+	.box-container
+		overflow: auto
+		white-space: nowrap
+		width: 100%
+		height: auto
+		padding-bottom: 20px
+		&::-webkit-scrollbar
+			background-color: #f3f4f8
+			height: 6px
+			border-radius: 3px
+		&::-webkit-scrollbar-thumb
+			background-color: $accent-color-s
+			border-radius: 3px
+	.box-image
+		margin: auto
+		width: 45%
+		display: inline-block
+		&:nth-child(odd)
+			margin: auto 5px
+	.td-box-components
+		height: 35px
+		overflow: hidden
+		margin-bottom: 0
+		line-height: 1.2
+
+	
+	+resp-max($medium)
+		max-width: 450px
+		margin-bottom: 40px
+
+	+resp-max($semi-medium)
+		max-width: 450px
+		margin-bottom: 30px
+
+.ls-content
+	+resp-max($medium)
+		text-align: center

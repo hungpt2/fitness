@@ -1,0 +1,590 @@
+@import '~pikaday/css/pikaday.css'
+
+@font-face
+	font-family: 'Antonio'
+	font-weight: 400
+	font-style: normal
+	src: url('./assets/fonts/Antonio-Regular.ttf')
+
+@font-face
+	font-family: 'Antonio'
+	font-weight: 600
+	font-style: normal
+	src: url('./assets/fonts/Antonio-Bold.ttf')
+
+$default-font: 'Antonio'
+
+@font-face
+	font-family: 'Sweet'
+	src: url('./assets/fonts/SweetSans.otf')
+
+$accent-font: 'Sweet'
+
+$accent-color-f: #ab131c
+$accent-color-s: #ee212e
+$accent-color-t: #e70023
+
+$extra-large: 1440px 
+$large: 1200px
+$medium: 992px
+$semi-medium: 768px
+$small: 480px
+
+/* Mixins */
+@mixin resp-max($val)
+	@media only screen and (max-width : $val)
+		@content
+
+@mixin resp-min($val)
+	@media only screen and (min-width : $val)
+		@content
+
+// Icon Fonts
+@font-face
+	font-family: 'icomoon'
+	src:  url('./assets/fonts/icomoon.eot?nzs2qy')
+	src:  url('./assets/fonts/icomoon.eot?nzs2qy#iefix') format('embedded-opentype'), url('./assets/fonts/icomoon.ttf?nzs2qy') format('truetype'), url('./assets/fonts/icomoon.woff?nzs2qy') format('woff'), url('./assets/fonts/icomoon.svg?nzs2qy#icomoon') format('svg')
+	font-weight: normal
+	font-style: normal
+
+[class^="icon-"], 
+[class*="icon-"]
+	font-family: 'icomoon' !important
+	speak: none
+	font-style: normal
+	font-weight: normal
+	font-variant: normal
+	text-transform: none
+	line-height: 1
+	-webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+
+.icon-ic-menu-shopping-list:before
+	content: "\e90b"
+
+.icon-collage:before
+	content: "\e90a"
+
+.icon-ic-change:before
+	content: "\e907"
+
+.icon-ic-done:before
+	content: "\e908"
+
+.icon-arrow:before
+	content: "\e909"
+
+.icon-ic-menu-dashboard:before 
+	content: "\e900"
+
+.icon-ic-menu-logout:before 
+	content: "\e901"
+
+.icon-ic-menu-meals:before 
+	content: "\e902"
+
+.icon-ic-menu-progress:before 
+	content: "\e903"
+
+.icon-ic-menu-settings:before 
+	content: "\e904"
+
+.icon-ic-menu-tips:before 
+	content: "\e905"
+
+.icon-ic-menu-workouts-normal:before 
+	content: "\e906"
+
+html,
+body
+	overflow-x: hidden
+
+body
+	padding: 0
+	margin: 0
+	width: 100%
+	background-color: #f8f8f8
+	color: #000
+	min-width: 320px
+	position: relative
+	line-height: 1.6
+	font-size: 16px
+	opacity: 1
+	font-family: $default-font
+	font-weight: 400
+	&::-webkit-scrollbar
+		background-color: #f3f4f8
+		border-radius: 3px
+		width: 6px
+	&::-webkit-scrollbar-thumb
+		background-color: #c9c9c9
+		border-radius: 3px
+
+a
+	cursor: pointer
+	display: inline-block
+	text-decoration: none
+	color: #000
+
+a:hover,
+a:focus
+	cursor: pointer
+	color: $accent-color-f
+	text-decoration: none
+
+button
+	outline: none
+	border: none
+
+// Containers
+.ls-container
+	padding-left: 260px
+	.ls-content
+		padding: 120px 0 50px
+		text-align: center
+		transition: transform .3s ease
+	+resp-max($large)
+		padding-left: 230px
+		.ls-content
+			.container
+				width: 95%
+	+resp-max($medium)
+		padding-left: 0
+		.ls-content
+			padding:
+				top: 110px
+				bottom: 40px
+			.container
+				width: 100%
+	+resp-max($small)
+		.ls-content
+			padding:
+				top: 100px
+				bottom: 30px
+
+.ls-container-toggle	
+	transform: translateX(62px)
+
+.container
+	width: 90%
+	max-width: 1170px
+	+resp-max($large)
+		width: 95%
+	+resp-max($medium)
+		width: 100%
+
+// Navbar
+.ls-navbar-container
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	background-color: #fff
+	height: 64px
+	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12)
+	z-index: 997
+
+.ls-navbar-main
+	position: absolute
+	top: 0
+	left: 0
+	height: 64px
+	width: 100%
+	text-align: center
+	padding-left: 260px
+	+resp-max($large)
+		padding-left: 230px
+	+resp-max($medium)
+		padding-left: 62px
+
+.ls-nv-content
+	text-align: left
+
+.ls-navbar-title
+	display: inline-block
+	height: 64px
+	h2
+		float: left
+		margin: 0
+		font-size: 22px
+		font-family: $accent-font
+		font-weight: 400
+		line-height: 2.7
+	+resp-max($medium)
+		display: none
+
+.ls-navbar-date
+	height: 64px
+	float: right
+	display: inline-block
+	.dashboard-view
+		span
+			font-family: $accent-font
+			font-size: 17px
+			margin-right: 20px
+		.cursor-pointer
+			cursor: pointer
+		a
+			background-color: $accent-color-s
+			font-size: 15px
+			font-weight: 600
+			color: #fff
+			width: 63px
+			height: 34px
+			text-align: center
+			margin: 15px 0
+			line-height: 2.2
+	.meals-view
+		padding: 17px 0px 0px
+		.week-btn
+			background-color: #ee212e
+			color: #fff
+			font-size: 17px
+			font-family: $accent-font
+			border-radius: 16.5px
+			text-align: center
+			line-height: 1.9
+			padding: 0 20px
+			height: 32px
+			margin: 0 16px
+		.arrow
+			border: solid 1px #e6e6e8
+			border-radius: 100%
+			width: 32px
+			height: 32px
+			text-align: center
+			line-height: 2.1
+			font-size: 15px
+			color: #e6e6e8
+		.arrow-prev
+			color: $accent-color-f
+		.arrow-next
+			color: $accent-color-f
+			transform: rotate(180deg)			
+	+resp-max($medium)
+		position: absolute
+		top: 0
+		left: 75px
+		right: 0
+		float: none
+		.dashboard-view
+			span
+				display: inline-block
+				margin: 18px 0px
+			a
+				float: right
+				margin-right: 15px
+		.meals-view
+			.week-btn
+				margin: 0 5px
+	+resp-max($small)
+		left: 70px
+		.dashboard-view
+			span
+				margin:
+					top: 14px
+					left: 0px
+				max-width: 105px
+				line-height: 1
+		.meals-view
+			.week-btn
+				margin: 0 3px
+				font-size: 14px
+				padding: 0 10px
+				line-height: 2.4
+
+// Box Styles
+.td-box-title
+	font-size: 18px
+	color: $accent-color-s
+	text-transform: uppercase
+	margin: 0
+	line-height: 1.4
+	display: inline-block
+
+.dt-btn
+	float: right
+	width: 26px
+	height: 26px
+
+.td-box-subtitle
+	font-size: 14px
+	font-family: $accent-font
+	text-transform: uppercase
+	margin: 10px 0 0
+
+.td-box-components
+	font-size: 13px
+	font-family: $accent-font
+	color: #929292
+	margin-top: 1px
+	.spacer
+		display: inline-block
+		width: 2px
+		height: 2px
+		border-radius: 100%
+		background-color: #ab131c
+		margin: 0px 6px 3px
+
+.box-image
+	position: relative
+	margin-top: 15px
+	img
+		width: 100%
+		height: auto
+	p
+		position: absolute
+		top: 0
+		left: 0
+		font-size: 15px
+		font-weight: 600
+		color: #fff
+		text-transform: uppercase
+		background-color: $accent-color-s
+		display: inline-block
+		padding: 6px 10px
+	.check-btn
+		width: 43px
+		height: 43px
+		position: absolute
+		top: 12px
+		right: 10px
+	.view-btn
+		position: absolute
+		bottom: 20px
+		right: 20px
+		line-height: 2.45
+		width: 66px
+		height: 34px
+		background-color: #fff
+		border-radius: 30px
+		font-size: 14px
+		font-family: $accent-font
+		color: $accent-color-f
+		text-align: center
+
+// Buttons
+.btn-container
+	text-align: right
+	.title
+		text-align: left
+		display: inline-block
+		float: left
+		margin-top: -1px
+		font-size: 17px
+		font-family: $accent-font
+		text-transform: uppercase
+
+.ls-done-btn
+	display: block
+	width: 100%
+	border-radius: 6px
+	border: 2px solid #e6e6e8
+	text-align: center
+	color: $accent-color-f
+	font-size: 17px
+	font-family: $accent-font
+	padding: 6px 0
+	.ls-done-wrapper
+		width: 82px
+		margin: auto
+	i
+		float: left
+		font-size: 22px
+		margin-top: 3px
+	&:hover
+		color: $accent-color-f
+	
+.ls-done-state
+	color: #fff
+	background-color: $accent-color-f
+	border-color: $accent-color-f
+	&:hover
+		color: #fff
+
+.siple-view,
+.back-btn
+	font-size: 14px
+	text-align: center
+	color: $accent-color-f
+	font-family: $accent-font
+	background-color: #fff
+	padding: 0 20px
+	height: 34px
+	border-radius: 20px
+	border: solid 2px #e6e6e8
+	line-height: 2
+	margin-bottom: 20px
+	position: relative
+	i
+		margin:
+			top: 9px
+			right: 6px
+		float: left
+		font-size: 12px
+
+.back-btn
+	float: left
+	img
+		width: 11px
+		height: 11px
+		margin:
+			top: -2px
+			right: 1px
+
+.ls-border-btn
+	font-size: 14px
+	font-family: $accent-font
+	border-radius: 6px
+	padding: 5px 35px
+	text-align: center
+	border: solid 2px #e6e6e8
+
+.ls-grey-btn
+	color: $accent-color-f
+	background-color: #ffffff
+	&:hover
+		color: $accent-color-f
+
+.ls-red-btn
+	background-color: $accent-color-f
+	border-color: $accent-color-f
+	color: #ffffff
+	&:hover
+		color: #fff
+
+// Simple View
+.simple-view
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	z-index: 1000
+	bottom: 0
+	right: 0
+	background-color: rgba(255, 255, 255, 0.9)
+	text-align: center
+	table
+		width: 100%
+		height: 100%
+
+.simple-container
+	text-align: left
+	padding: 10px 40px
+	background-color: #fff
+	max-width: 520px
+	width: 100%
+	overflow-y: hidden
+	border-radius: 6px
+	box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12)
+	margin: auto
+	position: relative
+	padding-bottom: 55px
+	.title-container
+		box-shadow: 0 1px 0 0 #e6e6e8
+		padding-bottom: 10px
+		.title
+			font-size: 22px
+			font-family: $accent-font
+			text-transform: capitalize
+			display: inline-block
+			margin: 5px 0
+		.btn-container
+			float: right
+			margin-top: 5px
+			.square-btn
+				text-align: center
+				width: 36px
+				height: 36px
+				border-radius: 6px
+				border: solid 2px #e6e6e8
+				background-color: #fff
+				line-height: 2
+				img
+					width: 18px
+					height: 18px
+			.close-btn
+				width: 20px
+				height: 20px
+				margin-left: 25px
+	.gn-title
+		font-size: 22px
+		font-family: $accent-font
+	.main-container
+		height: 100%
+		overflow-y: auto
+		margin-top: 0px
+		&::-webkit-scrollbar
+			background-color: transparent
+			border-radius: 3px
+			width: 6px
+		&::-webkit-scrollbar-thumb
+			background-color: $accent-color-s
+			border-radius: 3px
+		.meal-wrapper
+			box-shadow: 0 1px 0 0 #e6e6e8
+			padding-bottom: 15px
+			margin-bottom: 20px
+		.ingredients
+			margin:
+				bottom: 0px
+			.title
+				text-transform: uppercase
+				font-family: $accent-font
+				font-size: 15px
+			ul
+				list-style-type: none
+				padding: 0
+				margin: 0
+				li
+					line-height: 1.2
+					margin: 9px 0
+					font-family: $accent-font
+					font-size: 17px
+					position: relative
+					padding-left: 15px
+					.spacer
+						display: inline-block
+						position: absolute
+						top: 10px
+						left: -5px
+						width: 4px
+						height: 4px
+						border-radius: 100%
+						background-color: #ab131c
+						margin: 0px 6px 3px
+
+	+resp-max($small)
+		padding: 10px 20px 95px
+		.title-container
+			.btn-container
+				display: block
+				float: none
+				text-align: left
+				.close-btn
+					float: right
+					margin-top: 9px
+
+.dragscroll
+	cursor: grab
+	cursor : -o-grab
+	cursor : -moz-grab
+	cursor : -webkit-grab
+div.simple-notification-wrapper
+	z-index: 2000;
+
+.slide-meals-plan
+	.slick-dots
+		button::before
+			font-size: 10px
+		.slick-active
+			button::before
+				color: #C9202D!important
+	.slick-active
+		.image-slider
+			border: 5px #C9202D solid
+			border-radius: 10px
+	.slick-slide:focus
+		outline: none!important
+		

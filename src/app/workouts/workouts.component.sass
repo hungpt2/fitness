@@ -1,0 +1,198 @@
+@import '../../gb-mixins'
+
+.days-container
+	text-align: left
+	box-shadow: 0 1px 0 0 #e6e6e8
+	margin-bottom: 41px
+	white-space: nowrap
+	overflow: auto
+	ul
+		margin: 0
+		padding: 0
+		list-style-type: none
+		li
+			display: inline-block
+			a
+				font-family: $accent-font
+				font-size: 17px
+				color: #929292
+				padding: 13px 17px
+				&:hover
+					transition: color .3s ease
+					color: #000
+			.active
+				color: #000
+				border-bottom: 3px solid $accent-color-s
+.mobile-select
+	margin-bottom: 30px
+	text-align: left
+	select
+		font-family: $accent-font
+		border: none
+		outline: none
+		padding: 5px 20px
+		option
+			padding: 5px 0
+
+.workout-content
+	text-align: left
+	background-color: #fff
+	padding: 20px
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12)
+	border-radius: 6px
+	margin-bottom: 30px
+	position: relative
+	+resp-min($large)
+		height: 505px
+	+resp-min(1281px)
+		height: 470px
+	.td-box-title
+		display: block
+		height: 27px
+		overflow: hidden
+		white-space: nowrap
+		text-overflow: ellipsis
+	.box-container
+		overflow: auto
+		white-space: nowrap
+		height: auto
+		padding:
+			top: 10px
+			bottom: 20px
+		&::-webkit-scrollbar
+			background-color: #f3f4f8
+			height: 6px
+			border-radius: 3px
+		&::-webkit-scrollbar-thumb
+			background-color: $accent-color-s
+			border-radius: 3px
+	.box-image
+		//height: 210px
+		margin: auto
+		width: 94%
+		display: inline-block
+		img
+			width: 100%
+			height: 100%
+		// +resp-min($extra-large)
+		// 	height: 315px
+		// +resp-max($large)
+		// 	height: 210px
+		// +resp-max($medium)
+		// 	height: 350px
+		// +resp-max(440px)
+		// 	height: 300px
+		.thubmnail-video
+			//background-color: rgba(228,228,224,0.3)
+			position: absolute
+			top: 0
+			left: 0
+			right: 0
+			bottom: 0
+			display: flex
+			justify-content: end
+			align-items: flex-end
+			div
+				background-image: url("../../assets/img/PlayButton.png")
+				background-repeat: no-repeat
+				background-size: cover
+				height: 50px
+				width: 50px
+				color: gray
+				font-size: 2em
+				cursor: pointer
+	.info
+		margin: auto
+		width: 94%
+		display: inline-block
+	.info-container
+		text-align: right
+		padding-bottom: 20px
+		.td-box-components
+			float: left
+			margin:
+				top: 19px
+				bottom: 5px
+			font-size: 16px
+			color: #000
+			display: inline-block
+			.spacer
+				background-color: #000
+				margin:
+					left: 4px
+					right: 0px
+		@media only screen and (min-width: 992px) and (max-width: 1281px)
+			text-align: center
+			.td-box-components
+				float: none
+				display: block
+
+	.more-info
+		margin-top: 17px
+		line-height: 2
+		width: 90px
+		height: 34px
+		border: solid 2px #e6e6e8
+		border-radius: 20px
+		font-size: 14px
+		color: $accent-color-f
+		font-family: $accent-font
+		text-align: center
+		background-color: #fff
+		@media only screen and (min-width: 992px) and (max-width: 1281px)
+			margin-top: 6px
+
+	.descr
+		box-shadow: 0 -1px 0 0 #e6e6e8
+		padding-top: 1px
+		overflow: hidden
+		white-space: pre-line
+		p
+			font-size: 17px
+			line-height: 1.3
+			font-family: $accent-font
+
+	+resp-max($medium)
+		max-width: 410px
+		margin: 30px auto
+
+.workout-auto
+	height: auto
+
+.btn-container 
+	.title
+		margin-top: 2px
+
+.ls-done-btn
+	margin-top: 30px
+	background-color: #fff
+
+.ls-done-btn-active
+	background-color: $accent-color-f
+	border-color: $accent-color-f
+	color: #fff
+
+.simple-container
+	.main-container
+		padding-bottom: 50px
+		.td-box-title
+			margin-top: 10px
+		.day-title
+			font-family: $accent-font
+			font-size: 15px
+			text-transform: uppercase
+		.work-simple-wrapper
+			.value
+				margin: 5px 0
+				font-family: $accent-font
+				font-size: 17px
+				.spacer
+					display: inline-block
+					width: 2px
+					height: 2px
+					border-radius: 100%
+					background-color: #000
+					margin: 0 4px
+					vertical-align: middle
+.marginLeft
+	margin-left: 20px

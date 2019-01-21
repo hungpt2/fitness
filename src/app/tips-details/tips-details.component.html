@@ -1,0 +1,53 @@
+<app-sidebar></app-sidebar>
+
+<div class="ls-container">
+
+  <div class="ls-navbar-container">
+    <main class="ls-navbar-main">
+      <div class="container">
+        <div class="ls-nv-content">
+          <div class="ls-navbar-title">
+            <h2>Tips</h2>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <!-- Navbar Conteiner -->
+
+  <div class="ls-content">
+
+    <div class="container">
+
+      <div class="btn-container">
+        <a class="back-btn" onclick="reloadDragScroll()" (click)="goBack()">
+          <i class="icon-arrow"></i> Back</a>
+        <a class="back-btn" [routerLink]="['/tips-detail', selectDay(selectID, +1)]">Next
+          <i class="icon-arrow"></i>
+        </a>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="tip-detail">
+            <div class="tip-content" *ngIf="!error">
+              <div class="img-container">
+                <img [src]="tip.image_url || ''" alt="">
+                <p class="title">{{tip.category}}</p>
+              </div>
+              <div class="gn-title">{{tip.title}}</div>
+              <ng-container *ngFor="let para of tip.content;">
+                <p class="text" *ngIf="para">{{para}}</p>
+              </ng-container>
+            </div>
+            <div class="tip-content" *ngIf="error">
+              <p class="title">Your tip not found.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>

@@ -1,0 +1,15 @@
+<div class="col-md-6">
+  <div class="chart-box">
+    <p class="title">
+      <img src="assets/img/{{icon}}.svg" alt="">{{title}}</p>
+    <p class="persentage" *ngIf="statistic">{{statistic.percent}}%</p>
+    <p class="persentage" *ngIf="!statistic">0%</p>
+    <div class="loading">
+      <p *ngIf="statistic">{{statistic.done}} / {{statistic.total}}</p>
+      <p *ngIf="!statistic">0 / 0</p>
+      <div class="load">
+        <div [style.width]="statistic? statistic.percent +'%':'0%'"></div>
+      </div>
+    </div>
+  </div>
+</div>

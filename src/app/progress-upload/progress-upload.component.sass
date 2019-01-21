@@ -1,0 +1,102 @@
+@import '../styles/progress'
+
+.progress-content
+
+	.select-container
+		.btn-descr
+			font-family: $accent-font
+			font-size: 14px
+			color: #929292
+			display: inline-block
+			margin-top: 25px
+		.upl-btn
+			width: 90px
+			height: 34px
+			border-radius: 6px
+			background-color: $accent-color-f
+			text-align: center
+			color: #fff
+			font-size: 14px
+			font-family: $accent-font
+			line-height: 2.4
+			margin-top: 20px
+			float: right
+		.upl-two
+			float: none
+			margin: 20px 25px 5px
+		.soc-icon
+			position: absolute
+			top: 5px
+			right: 5px
+			display: inline-block
+			background-color: $accent-color-s
+			border-radius: 100%
+			width: 22px
+			height: 22px
+			text-align: center
+			line-height: 1.4
+			box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+			img
+				width: 12px
+				height: 12px
+
+	+resp-max($medium)
+		text-align: center
+		.select-container
+			margin: auto
+			text-align: left
+
+	+resp-max($small)
+		.select-container
+			width: 100%
+			text-align: center
+			.select
+				max-width: 250px
+				height: 250px
+				margin:
+					left: auto
+					right: auto
+					bottom: 15px
+			.btn-descr
+				display: block
+				margin-top: 0px
+			.upl-btn
+				float: none
+				margin: 0
+			.upl-two
+				margin: 0 15px
+		.com-btn
+			i
+				display: none
+
+.btn-container
+	text-align: left
+	.back-btn
+		float: none
+.input-file
+	display: none
+.simple-container
+	padding: 20px
+	text-align: center
+.myCropper
+	width: 100%
+	height: 100%
+
+@keyframes spinner
+	to {transform: rotate(360deg);}
+ 
+.spinner:before
+	content: '';
+	box-sizing: border-box;
+	position: absolute;
+	top: 50%;
+	width: 20px;
+	height: 20px;
+	margin-top: -10px;
+	margin-left: -20px;
+	border-radius: 50%;
+	border: 2px solid #ccc;
+	border-top-color: #333;
+	animation: spinner .6s linear infinite;
+.wrapper-spinner
+	position: relative

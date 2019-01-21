@@ -1,0 +1,173 @@
+@import '../../gb-mixins'
+
+.ls-sidebar-container
+	position: fixed
+	width: 260px
+	height: 100%
+	top: 0
+	left: 0
+	display: inline-block
+	z-index: 999
+	transition: width .3s ease
+	+resp-max($large)
+		width: 230px
+
+	+resp-max($medium)
+		width: 62px
+	main
+		overflow: hidden
+
+.ls-sidebar-open
+	+resp-max($medium)
+			width: 230px
+	transform: translateX(0%)
+	transition: transform .3s ease
+
+.ls-navbar-header
+	background-color: $accent-color-f
+	height: 64px
+	width: 260px
+	display: inline-block
+	transition: width .3s ease
+	vertical-align: top
+	z-index: 2
+	img
+		margin: 16px 0px 16px 20px
+		width: 168px
+		height: 32px
+	.menu-btn
+		width: 21px
+		height: 14px
+		float: right
+		margin: 24px 20px 0px 0px
+		.f-line,
+		.s-line
+			background-color: #fff
+			height: 2px
+			border-radius: 30px
+			margin: 4px 0
+			transition: transform .3s ease, margin .3s ease
+	.close-btn
+		margin-top: 27px
+		.f-line
+			transform: rotate(-45deg)
+			margin-bottom: -6px
+		.s-line
+			transform: rotate(45deg)
+
+	+resp-max($large)
+		width: 230px
+		img
+			margin-left: 10px
+
+	+resp-max($medium)
+		width: 62px
+		img
+			display: none
+
+main
+	background-color: #fff
+	box-shadow: 1px 0 0 0 #e6e6e8
+	transition: width .3s ease, transform .3s ease
+	position: relative
+	height: 100%
+	+resp-max($medium)
+		transform: translateX(-100%)
+		border-top: 1px #e6e6e8 solid
+
+.ls-profile
+	text-align: center
+	margin: 0px 20px 5px
+	box-shadow: 0 1px 0 0 #e6e6e8
+	padding:
+		top: 16px
+		bottom: 20px
+	.user-image
+		display: inline-block
+		margin: auto
+		width: 80px
+		height: 80px
+		border-radius: 100%
+		border: 1px solid #ffffff
+		box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14)
+		img
+			width: 100%
+			height: 100%
+			border-radius: 100%
+	.user-name
+		font-size: 20px
+		font-weight: bold
+		color: $accent-color-t
+		text-transform: uppercase
+		margin: 5px 0
+	+resp-max($medium)
+		display: none
+
+.menu-item
+	position: relative
+	display: block
+	font-family: $accent-font
+	font-size: 14px
+	text-transform: uppercase
+	height: 52px
+	line-height: 3.8
+	background-size: 22px 22px
+	background-position: 0 46%
+	background-repeat: no-repeat
+	i
+		font-size: 22px
+		position: absolute
+		top: 13px
+		left: 0
+		text-align: center
+		width: 25px
+	span
+		margin-left: 42px
+	&:hover
+		transition: color .3s ease
+		color: $accent-color-f
+
+	+resp-max($medium)
+		background-position: 48% 46%
+		i
+			left: 20px
+		span
+			margin-left: 62px
+
+	@media only screen and (max-height: 600px) and (min-width: 992px)
+		height: 45px
+
+	@media only screen and (max-height: 580px) and (min-width: 992px)
+		height: 40px
+
+	@media only screen and (max-height: 550px) and (min-width: 992px)
+		height: 37px
+
+.active-side-menu
+	color: $accent-color-f
+
+.ls-menu
+	margin: 0 20px
+	ul
+		margin: 0
+		padding: 0
+		list-style-type: none
+	+resp-max($medium)
+		margin: 0
+
+
+.ls-logout
+	position: absolute
+	left: 20px
+	right: 20px
+	bottom: 55px
+	i
+		top: 15px
+
+	+resp-max($medium)
+		left: 0px
+
+	@media only screen and (max-height: 600px) and (min-width: 992px)
+		bottom: 70px	
+.in-active-menu
+	color: #b5aaaa

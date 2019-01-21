@@ -1,0 +1,76 @@
+@import '../../../gb-mixins'
+
+.chart-box
+	padding: 20px
+	text-align: left
+	background-color: #fff
+	border-radius: 6px
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12)
+	margin: 10px 0
+	.title
+		margin: 0
+		font-size: 18px
+		font-weight: 600
+		text-transform: uppercase
+		display: inline-block
+		img
+			margin-top: 2px
+			float: left
+			margin-right: 16px
+			width: 22px
+			height: 22px
+	.persentage
+		margin: 0
+		display: inline-block
+		float: right
+		font-size: 17px
+		color: $accent-color-f
+	.loading
+		p
+			font-size: 20px
+			font-family: $accent-font
+			margin: 13px 0 0
+			display: inline-block
+		.load
+			float: right
+			margin-top: 31px
+			display: inline-block
+			width: 63%
+			height: 4px
+			border-radius: 30px
+			background-color: #f3f4f8
+			div
+				width: 45%
+				height: 4px
+				border-radius: 30px
+				background-color: $accent-color-f
+
+	+resp-min($extra-large)
+		.loading
+			.load
+				width: 68%
+
+	+resp-max($large)
+		.loading
+			.load
+				width: 55%
+
+	+resp-max($medium)
+		width: 100%
+		max-width: 410px
+		margin: 15px auto
+		.loading
+			.load
+				width: 64%
+
+	+resp-max($small)
+		.loading
+			p
+				margin-top: 5px
+				display: block
+				text-align: center
+			.load
+				width: 100%
+				float: none
+				margin-top: 10px
+

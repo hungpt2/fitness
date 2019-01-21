@@ -1,0 +1,186 @@
+<app-sidebar></app-sidebar>
+
+<div class="ls-container">
+
+  <div class="ls-navbar-container">
+    <main class="ls-navbar-main">
+      <div class="container">
+        <div class="ls-nv-content">
+          <div class="ls-navbar-title">
+            <h2>Settings</h2>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <!-- Navbar Conteiner -->
+
+  <div class="ls-content">
+
+    <div class="container">
+      <div class="settings-container">
+        <p class="settings-title">Your Profile</p>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="user-photo-container" (click)="file.click()">
+              <input class="input-attach" type="file" accept="image/*" #file (change)="onUpdateAvatar(file.files)">
+              <img *ngIf="!setting.avatar_path" src="assets/img/profile-avatar.png" alt="">
+              <img *ngIf="setting.avatar_path" src="{{setting.avatar_path}}" alt="">
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="info-container">
+              <p class="info-title">General Info</p>
+              <div>
+                <div class="separate separate-two">
+                  <label for="First Name">First Name</label>
+                  <br/>
+                  <input [(ngModel)]="setting.first_name" type="text" name="First Name">
+                </div>
+                <div class="separate separate-two">
+                  <label for="Last Name">Last Name</label>
+                  <br/>
+                  <input [(ngModel)]="setting.last_name" type="text" name="Last Name">
+                </div>
+              </div>
+              <div class="separate">
+                <label for="Your Email">Your Email</label>
+                <br/>
+                <input [(ngModel)]="setting.email" type="email" name="Email" class="email-input">
+              </div>
+              <div>
+                <div class="separate separate-two">
+                  <label for="Unit System">Unit System</label>
+                  <br/>
+                  <select [(ngModel)]="setting.unit_system" (change)="onUnitSystemChange($event.target.value)">
+                    <option value=1>Metric</option>
+                    <option value=2>Imperial</option>
+                  </select>
+                </div>
+                <div class="separate separate-two">
+                  <label for="Languages">Languages</label>
+                  <br/>
+                  <select [(ngModel)]="setting.language" name="" id="">
+                    <option value="English">English</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="info-container">
+              <p class="info-title">Personal Details</p>
+              <div>
+                <div class="separate separate-two personal" *ngIf="setting.unit_system == 1">
+                  <label class="height-input">Height</label>
+                  <br/>
+                  <input [(ngModel)]="setting.height" type="number">
+                </div>
+                <div class="separate separate-two personal" *ngIf="setting.unit_system == 2">
+                  <label>Height</label>
+                  <br/>
+                  <input class="height" [(ngModel)]="setting.height" type="number">
+                  <span class="unit-ft">ft</span>
+                  <input class="inch" [(ngModel)]="setting.inch" type="number">
+                  <span class="unit-inch">in</span>
+                </div>
+                <div class="separate separate-two personal">
+                  <label class="kg-input" [ngClass]="{'lbs-input' : setting.unit_system == 2}">Starting Weight</label>
+                  <br/>
+                  <input [(ngModel)]="setting.weight" type="number">
+                </div>
+                <div class="separate separate-two personal">
+                  <label class="kg-input" [ngClass]="{'lbs-input' : setting.unit_system == 2}">Current Weight</label>
+                  <br/>
+                  <input [(ngModel)]="setting.current_weight" type="number">
+                </div>
+              </div>
+              <div>
+                <div class="separate separate-two">
+                  <label for="Unit System">Gender</label>
+                  <br/>
+                  <select [(ngModel)]="setting.gender">
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                  </select>
+                </div>
+                <div class="separate separate-two date">
+                  <label for="Languages">Date of Birth</label>
+                  <br/>
+                  <select name="" id="" [(ngModel)]="date.day">
+                    <option *ngFor="let number of [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]">{{number}}</option>
+                  </select>
+                  <select class="mounth" [(ngModel)]="date.month">
+                    <option value="1">Jan.</option>
+                    <option value="2">Feb.</option>
+                    <option value="3">Mar.</option>
+                    <option value="4">Apr.</option>
+                    <option value="5">May</option>
+                    <option value="6">Jun.</option>
+                    <option value="7">Jul.</option>
+                    <option value="8">Aug.</option>
+                    <option value="9">Sept.</option>
+                    <option value="10">Oct.</option>
+                    <option value="11">Nov.</option>
+                    <option value="12">Dec.</option>
+                  </select>
+                  <select name="year" id="year" [(ngModel)]="date.year">
+                    <option value="" disabled selected>Year</option>
+                    <option *ngFor="let number of arrayYear">{{number}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="info-container">
+              <p class="info-title">Change Password</p>
+              <div>
+                <div class="separate separate-two">
+                  <label for="First Name">Current Password</label>
+                  <br/>
+                  <input [(ngModel)]="password.current" type="password">
+                  <div *ngIf="password.newPassword && !password.current" class="help-block">Current password is required</div>
+                </div>
+                <div class="separate separate-two">
+                  <label for="Last Name">New Password</label>
+                  <br/>
+                  <input [(ngModel)]="password.newPassword" type="password">
+                  <div *ngIf="!password.newPassword && password.current" class="help-block">New password is required</div>
+                </div>
+                <div class="separate separate-two">
+                  <label for="Last Name">New Password Confirm</label>
+                  <br/>
+                  <input [(ngModel)]="password.newPasswordConfirm" type="password">
+                  <div *ngIf="password.newPassword && password.newPassword !== password.newPasswordConfirm" class="help-block">Password and comfirn is not the same</div>
+                </div>
+              </div>
+              <a class="confirm-btn" (click)="onSubmit()">Confirm</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" *ngIf="0">
+      <div class="settings-container">
+        <p class="settings-title">Add New Users</p>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="user-photo-container">
+              <img src="assets/img/icon-new-users.svg" alt="">
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="info-container users">
+              <div class="separate">
+                <label for="Your Email">Your Email</label>
+                <br/>
+                <input type="email" name="Email" class="email-input" placeholder="username@example.com">
+                <a>Send an Invitation</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,83 @@
+@import '../../gb-mixins'
+
+.shopping-item
+	text-align: left
+	background-color: #ffffff
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12)
+	padding: 20px
+	margin: 0 auto 20px
+	+resp-max($medium)
+		max-width: 420px
+
+.shopping-item-title
+	font-weight: 600
+	font-size: 18px
+	line-height: 1
+	margin: 0
+	text-transform: uppercase
+	display: inline-block
+
+.shopping-arrow-btn
+	float: right
+	img
+		transition: all .1s ease
+		width: 16px
+		height: 16px
+
+.shopping-item-container
+	ul
+		margin: 0
+		padding: 0
+		list-style-type: none
+		a
+			font-size: 17px
+			font-family: $accent-font
+			display: block
+			margin: 20px 0
+			padding: 5px 0
+			position: relative
+			padding-left: 40px
+			.check
+				position: absolute
+				top: 10px
+				left: 0px
+				display: inline-block
+				width: 18px
+				height: 18px
+				border: 2px solid #c5c5c5
+				border-radius: 3px
+				background-color: #fff
+				img
+					width: 14.5px
+					height: 12px
+					vertical-align: top
+					margin-top: 1px
+			.check-selected
+				border-color: $accent-color-s
+				background-color: $accent-color-s
+			&:hover
+				color: #000
+
+.simple-view
+	.gn-title
+		margin-bottom: 30px
+	.shopping-item
+		padding: 0
+		box-shadow: none
+		max-width: auto !important
+		margin-bottom: 30px
+		.shopping-item-title
+			margin-bottom: 15px
+			font-size: 20px
+			color: $accent-color-s
+		.shopping-item-container
+			ul
+				a
+					margin: 0
+.simple-container-special
+	max-width: none
+
+.shopping-title-mobile
+	display: none
+	+resp-max($small)
+		display: block

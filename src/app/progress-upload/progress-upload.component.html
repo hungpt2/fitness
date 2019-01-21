@@ -1,0 +1,92 @@
+<app-sidebar></app-sidebar>
+
+<div class="ls-container">
+
+	<div class="ls-navbar-container">
+		<main class="ls-navbar-main">
+			<div class="container">
+				<div class="ls-nv-content">
+					<div class="ls-navbar-title">
+						<h2>Progress</h2>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+	<!-- Navbar Conteiner -->
+
+	<div class="ls-content">
+
+		<div class="container">
+
+			<div class="btn-container">
+				<a class="back-btn" (click)="goBack()">
+					<i class="icon-arrow"></i> Back</a>
+			</div>
+
+			<div class="progress-content">
+
+				<div class="link-container">
+					<p class="item item-active">Upload Photo</p>
+					<div class="hr-line"></div>
+					<p class="item">Create Post</p>
+					<div class="hr-line"></div>
+					<p class="item">Share</p>
+				</div>
+
+				<div class="select-container">
+					<input class="input-file" type="file" accept="image/*" #file (change)="onInputFileChange($event)">
+					<a class="select" [class.select-two-images]="isMakePhoto">
+						<img src="{{imageUrl2}}" alt="">
+						<a class="soc-icon" *ngIf="imageUrl2" (click)="removeImage('image2')">
+							<img src="assets/img/ic-rubbish-bin.svg" alt="">
+						</a>
+					</a>
+					<a class="select" [class.select-two-images]="isMakePhoto">
+						<img src="{{isMakePhoto ? imageUrl1 : imageUrl}}" alt="">
+						<a class="soc-icon" *ngIf="isMakePhoto ? imageUrl1: imageUrl" (click)="removeImage('image')">
+							<img src="assets/img/ic-rubbish-bin.svg" alt="">
+						</a>
+					</a>
+					<div [style.text-align]="isMakePhoto ? 'center' : 'left'">
+						<p class="btn-descr" *ngIf="!isMakePhoto">Drag or upload your photo: </p>
+						<button class="upl-btn" [class.upl-two]="isMakePhoto" (click)="file.value = '';file.click();isClickUpload2 = false">Upload</button>
+						<button class="upl-btn" [class.upl-two]="isMakePhoto" (click)="file.value = '';file.click();isClickUpload2 = true" *ngIf="isMakePhoto">Upload</button>
+						<button class="com-btn" [class.active-com-btn]="isMakePhoto" (click)="isMakePhoto = !isMakePhoto">
+							<i class="icon-collage" style="transform: rotate(90deg);"></i>
+							<span>Make your progress photos</span>
+						</button>
+					</div>
+				</div>
+
+				<div class="bottom-btns">
+					<button class="com-btn" (click)="goBack()">Cancel</button>
+					<button class="com-btn" (click)="save()" [routerLink]="['/progress-post', selectID ? selectID : '' ]" [style.opacity]="availableNext() ? '1' : '0.6'"
+					 [disabled]="!availableNext()">Next</button>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- Progress Content -->
+
+	</div>
+
+</div>
+<div class="simple-view" *ngIf="showCropView">
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<div class="simple-container">
+						<img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+						<button class="ls-border-btn ls-grey-btn" (click)="showCropView = false; file.value = '';" [disabled]="isCropping">Cancel</button>
+						<button class="ls-border-btn ls-red-btn wrapper-spinner" (click)="submitCrop()" [disabled]="isCropping">
+							<i [ngClass]="{'spinner': isCropping}"> </i>Apply</button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

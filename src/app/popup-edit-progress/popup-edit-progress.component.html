@@ -1,0 +1,50 @@
+<div class="simple-view">
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <div class="simple-container">
+            <div class="title-container">
+              <div class="btn-container">
+                <a class="close-btn" (click)="closePopup.emit(false)">
+                  <img src="assets/img/ic-close-white.svg" alt="">
+                </a>
+              </div>
+            </div>
+
+            <div class="main-container progress-content">
+              <div class="progres-box" *ngIf="progres">
+                <div class="img-box">
+                  <p class="img-title" [ngClass]="{'right' : !progres.progress_photos[1]}" *ngIf="(progres.progress_photos[0] && progres.progress_photos[0].week) || (progres.progress_photos[0] && progres.progress_photos[0].weight)">
+                    <span *ngIf="progres.progress_photos[0].week">Week {{progres.progress_photos[0].week}}</span>
+                    <span *ngIf="progres.progress_photos[0].weight">{{progres.progress_photos[0].weight}} kg</span>
+                  </p>
+                  <ng-container *ngIf="progres.progress_photos[1]">
+                    <p class="img-title img-title-second" *ngIf="(progres.progress_photos[1] && progres.progress_photos[1].week) || ( progres.progress_photos[1] && progres.progress_photos[1].weight)">
+                      <span *ngIf="progres.progress_photos[1].week">Week {{progres.progress_photos[1].week}}</span>
+                      <span *ngIf="progres.progress_photos[1].weight">{{progres.progress_photos[1].weight}} kg</span>
+                    </p>
+                  </ng-container>
+                  <div class="img-container img-container-popup" [class.img-container-separate]="progres.progress_photos[1] && progres.progress_photos[1].photo_url">
+                    <img class="img-container-img" src="{{progres.progress_photos[0] && progres.progress_photos[0].photo_url}}" alt="">
+                    <img class="img-container-img" src="{{progres.progress_photos[1] && progres.progress_photos[1].photo_url}}" alt="">
+                  </div>
+                  <div class="soc-icon-container">
+                    <a class="soc-icon" (click)="onDelete.emit(progres)">
+                      <img src="assets/img/ic-rubbish-bin.svg" alt="">
+                    </a>
+                    <a class="soc-icon" [routerLink]="['/progress-upload', progres.id]">
+                      <img src="assets/img/ic-pencil-edit-button.svg" alt="">
+                    </a>
+                  </div>
+                </div>
+                <p class="title" *ngIf="progres.caption">{{progres.caption}}</p>
+              </div>
+            </div>
+
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

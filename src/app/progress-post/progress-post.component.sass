@@ -1,0 +1,125 @@
+@import '../styles/progress'
+
+.progress-content
+
+	.select-container
+		display: inline-block
+		.select
+			.img-title
+				position: absolute
+				text-align: center
+				bottom: 0
+				right: 0
+				font-size: 15px
+				font-weight: 600
+				color: #fff
+				text-transform: uppercase
+				background-color: #ee212e
+				display: inline-block
+				padding: 5px 12px
+				span
+					display: block
+					text-align: center
+		.select-active
+			border: 2px solid $accent-color-f
+
+		.select-box
+			background-color: #f8f8f8
+			margin: 10px 0
+			padding: 20px
+			span
+				font-family: $accent-font
+				font-size: 17px
+				margin-left: 10px
+			.logo
+				width: 25px
+				height: 25px
+			.state
+				float: right
+				margin-top: 2px
+				img
+					width: 51px
+					height: 28px
+			.value
+				text-align: center
+				margin-top: 20px
+				img
+					width: 25px
+					height: 25px
+				input
+					margin: 0 8px
+					width: 120px
+					height: 34px
+					border-radius: 6px
+					background-color: #ffffff
+					border: solid 1px #e6e6e8
+					font-family: $accent-font
+					font-size: 18px
+					text-align: center
+					color: $accent-color-t
+
+	.caption-area
+		display: inline-block
+		vertical-align: top
+		margin-left: 15px
+		width: 58%
+		p
+			margin: 0 0 7px
+			line-height: 1
+			font-family: $accent-font
+			font-size: 14px
+			color: #929292
+		textarea
+			width: 100%
+			padding: 20px
+			height: 100px
+			border-radius: 6px
+			border: solid 1px #e6e6e8
+			font-family: $accent-font
+			font-size: 17px
+			line-height: 1.29
+			color: #000000
+			resize: none
+
+		+resp-max($large)
+			width: 51%
+
+	+resp-max($medium)
+		text-align: center
+		.select-container
+			margin: auto
+			text-align: left
+		.caption-area
+			display: block
+			text-align: left
+			width: 100%
+			margin: 30px auto 0
+			textarea
+				display: inline-block
+
+	+resp-max($small)
+		.link-container
+			.item
+				display: none
+			.hr-line
+				display: none
+			.item-active
+				display: block
+				margin-bottom: 20px
+		.select-container
+			width: 100%
+			text-align: center
+			.select
+				width: 100%
+				max-width: 300px
+				height: 240px
+			.select-box
+				text-align: left
+		.com-btn
+			i
+				display: none
+
+.btn-container
+	text-align: left
+	.back-btn
+		float: none

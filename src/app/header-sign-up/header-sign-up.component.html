@@ -1,0 +1,8 @@
+<h2 class="caption">Sign Up!</h2>
+<div class="sigup-title-container">
+  <h2 class="sigup-menu-active">Personal Details</h2>
+  <div *ngIf="skuInfo !== 'training'" class="sigup-hr-line" [ngClass]="{'sigup-hr-active': step > 1}"></div>
+  <h2 *ngIf="skuInfo !== 'training'" [ngClass]="{'sigup-menu-active': step > 1}">Create Nutrition Plan</h2>
+  <div *ngIf="skuInfo !== 'meals'" class="sigup-hr-line" [ngClass]="{'sigup-hr-active': step > 2}"></div>
+  <h2 *ngIf="skuInfo !== 'meals'" [ngClass]="{'sigup-menu-active': step > 2}">Create Workout Plan</h2>
+</div>

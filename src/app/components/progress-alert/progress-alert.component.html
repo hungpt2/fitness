@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="alert-info">
+    <div class="row">
+      <div class="col-md-11">
+        <p>You have not uploaded a new photo for week {{week || ''}} yet. Please go to Progress
+          page to upload a photo.
+        </p>
+      </div>
+      <a class="pull-right" (click)="closeAlert.emit(false)">
+        <img src="assets/img/ic-close-red.svg" alt="">
+      </a>
+    </div>
+  </div>
+</div>

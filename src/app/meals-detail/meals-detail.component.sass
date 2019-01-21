@@ -1,0 +1,188 @@
+@import '../../gb-mixins'
+
+.meals-details
+	background-color: #fff
+	padding: 20px
+	position: relative
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12)
+	border-radius: 6px
+	text-align: left
+	margin-bottom: 30px
+	.box-image
+		background-size: cover
+		background-position: center
+		background-repeat: no-repeat
+		height: 250px
+		+resp-min($extra-large)
+			height: 300px
+		+resp-max($large)
+			height: 220px
+		+resp-max($medium)
+			height: 290px
+	.details
+		font-size: 14px
+		font-family: $accent-font
+		text-transform: uppercase
+		margin-bottom: 0
+	.td-box-components
+		line-height: 1.2
+		height: 34px
+		overflow: hidden
+		margin-bottom: 0px
+	.ingredients
+		margin:
+			top: 5px
+			bottom: 135px
+		box-shadow: 0 -1px 0 0 #e6e6e8
+		padding-top: 5px
+		+resp-max($medium)
+			margin-bottom: 0px
+		ul
+			list-style-type: none
+			padding: 0
+			margin: 0
+			li
+				line-height: 1.2
+				margin: 9px 0
+				font-family: $accent-font
+				font-size: 17px
+				position: relative
+				padding-left: 15px
+				.spacer
+					display: inline-block
+					position: absolute
+					top: 10px
+					left: -5px
+					width: 4px
+					height: 4px
+					border-radius: 100%
+					background-color: #ab131c
+					margin: 0px 6px 3px
+				a
+					position: absolute
+					right: 9px
+					img
+						width: 14px
+						height: 14px
+			.change-ingredients
+				border: 1px solid #ccc
+				border-radius: 10px
+				padding:
+					bottom: 5px
+					left: 5px
+					right: 30px
+	.directions
+		margin:
+			top: 20px
+		box-shadow: 0 -1px 0 0 #e6e6e8
+		padding-top: 10px
+		padding-bottom: 10px
+		+resp-max($medium)
+			margin-bottom: 10px
+		.ic-arrow
+			float: right
+		.line
+			margin-top: 10px
+			border-bottom: 1px solid #e6e6e8
+	.btn-container
+		position: absolute
+		left: 20px
+		right: 20px
+		bottom: 20px
+		.ls-done-btn
+			display: inline-block
+			width: 47%
+			margin: 20px auto 0
+			min-width: 120px
+			div
+				max-width: 103px
+				margin: auto
+				position: relative
+			.ls-done-wrapper
+				width: 82px
+			i
+				float: left
+				font-size: 22px
+				margin-top: 3px
+			&:first-child
+				float: left
+
+		+resp-max(1300px)
+			text-align: center
+			.ls-done-btn
+				width: 100%
+				float: none
+				&:first-child
+					float: none
+
+	+resp-max($medium)
+		max-width: 410px
+		margin:
+			left: auto
+			right: auto
+		.btn-container
+			position: static
+
+.food-view
+	.main-container
+		height: calc(100% - 105px)
+		+resp-max($small)
+			height: calc(100% - 43px)
+	.simple-container
+		+resp-max($small)
+			width: 95%
+			.title-container 
+				.btn-container
+					display: inline-block
+					float: right
+					margin-top: 2px
+	.swap-options
+		margin: 0px
+		padding: 11px 0 14px
+		list-style-type: none
+		li
+			position: relative
+			padding-left: 35px
+			font-family: $accent-font
+			text-transform: capitalize
+			margin: 17px 0
+			cursor: pointer
+		.check
+			position: absolute
+			top: 6px
+			left: 0px
+			display: inline-block
+			width: 18px
+			height: 18px
+			border: 2px solid #c5c5c5
+			border-radius: 3px
+			background-color: #fff
+			img
+				width: 14.5px
+				height: 12px
+				vertical-align: top
+				margin-top: 1px
+		.check-selected
+			border-color: $accent-color-s
+			background-color: $accent-color-s
+	.confirm-container
+		text-align: right
+		padding: 30px 0px
+		box-shadow: 0 -1px 0 0 #e6e6e8
+		position: absolute
+		bottom: 0
+		left: 40px
+		right: 40px
+		display: block
+		z-index: 2
+		background-color: #fff
+		.ls-done-btn
+			color: #fff
+			background-color: $accent-color-f
+			border-color: $accent-color-f
+			width: 145px
+			display: inline-block
+		+resp-max($small)
+			left: 20px
+			right: 20px
+			padding: 20px 0

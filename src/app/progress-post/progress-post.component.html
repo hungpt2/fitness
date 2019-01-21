@@ -1,0 +1,146 @@
+<app-sidebar></app-sidebar>
+
+<div class="ls-container">
+	<div class="ls-navbar-container">
+		<main class="ls-navbar-main">
+			<div class="container">
+				<div class="ls-nv-content">
+					<div class="ls-navbar-title">
+						<h2>Progress</h2>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+	<!-- Navbar Conteiner -->
+
+	<div class="ls-content">
+
+		<div class="container">
+
+			<div class="btn-container">
+				<a class="back-btn" (click)="goBack();">
+					<img src="assets/img/back.svg" alt=""> Back</a>
+			</div>
+
+			<div class="progress-content">
+
+				<div class="link-container">
+					<p class="item" style="color: #ee212e;">Upload Photo</p>
+					<div class="hr-line hr-line-active"></div>
+					<p class="item item-active">Create Post</p>
+					<div class="hr-line"></div>
+					<p class="item">Share</p>
+				</div>
+
+				<div class="select-container">
+					<a class="select" (click)="selectimg('left')" [class.select-active]="selectImg === photo1" [class.select-two-images]="multiPhoto">
+						<img src="{{photo1.photo_url || ''}}" alt="">
+						<p class="img-title" *ngIf=" photo1 && (photo1.week || photo1.weight)">
+							<span *ngIf="photo1.week">Week {{photo1.week}}</span>
+							<span *ngIf="photo1.weight">{{photo1.weight}} kg</span>
+						</p>
+					</a>
+					<a class="select" (click)="selectimg('right')" [class.select-active]="selectImg === photo2" [class.select-two-images]="multiPhoto">
+						<img src="{{photo2.photo_url|| ''}}" alt="">
+						<p class="img-title" *ngIf="photo2.week || photo2.weight">
+							<span *ngIf="photo2.week">Week {{photo2.week}}</span>
+							<span *ngIf="photo2.weight">{{photo2.weight}} kg</span>
+						</p>
+					</a>
+					<div class="select-box" *ngIf="selectImg === photo1">
+						<img class="logo" src="assets/img/ic-weght.svg" alt="">
+						<span>Weight</span>
+						<a class="state" (click)="photo1.weight=null; weightBox = false;" *ngIf="photo1.weight">
+							<img src="assets/img/on.svg" alt="">
+						</a>
+						<a class="state" (click)="photo1.weight=1; weightBox = true;" *ngIf="!photo1.weight">
+							<img src="assets/img/off.svg" alt="">
+						</a>
+						<div class="value" *ngIf="photo1.weight || weightBox">
+							<a (click)="photo1.weight = changeValue(photo1.weight, 'reduce')">
+								<img style="transform: rotate(90deg);" src="assets/img/ic-minus.svg" alt="">
+							</a>
+							<input type="text" name="weight" [(ngModel)]="photo1.weight">
+							<a (click)="photo1.weight = changeValue(photo1.weight, 'increse')">
+								<img src="assets/img/ic-plus.svg" alt="">
+							</a>
+						</div>
+					</div>
+					<div class="select-box" *ngIf="selectImg === photo1">
+						<img class="logo" src="assets/img/ic-week.svg" alt="">
+						<span>Week</span>
+						<a class="state" (click)="photo1.week=null; weekBox = false;" *ngIf="photo1.week">
+							<img src="assets/img/on.svg" alt="">
+						</a>
+						<a class="state" (click)="photo1.week=1; weekBox = true;" *ngIf="!photo1.week">
+							<img src="assets/img/off.svg" alt="">
+						</a>
+						<div class="value" *ngIf="photo1.week || weekBox">
+							<a (click)="photo1.week = changeValue(photo1.week, 'reduce')">
+								<img style="transform: rotate(90deg);" src="assets/img/ic-minus.svg" alt="">
+							</a>
+							<input type="text" name="weight" [(ngModel)]="photo1.week">
+							<a (click)="photo1.week = changeValue(photo1.week, 'increse')">
+								<img src="assets/img/ic-plus.svg" alt="">
+							</a>
+						</div>
+					</div>
+					<div class="select-box" *ngIf="selectImg === photo2">
+						<img class="logo" src="assets/img/ic-weght.svg" alt="">
+						<span>Weight</span>
+						<a class="state" (click)="photo2.weight=null; weightBox_s = false;" *ngIf="photo2.weight">
+							<img src="assets/img/on.svg" alt="">
+						</a>
+						<a class="state" (click)="photo2.weight=1; weightBox_s = true;" *ngIf="!photo2.weight">
+							<img src="assets/img/off.svg" alt="">
+						</a>
+						<div class="value" *ngIf="photo2.weight || weightBox_s">
+							<a (click)="photo2.weight = changeValue(photo2.weight, 'reduce')">
+								<img style="transform: rotate(90deg);" src="assets/img/ic-minus.svg" alt="">
+							</a>
+							<input type="text" name="weight" [(ngModel)]="photo2.weight">
+							<a (click)="photo2.weight = changeValue(photo2.weight, 'increase')">
+								<img src="assets/img/ic-plus.svg" alt="">
+							</a>
+						</div>
+					</div>
+					<div class="select-box" *ngIf="selectImg === photo2">
+						<img class="logo" src="assets/img/ic-week.svg" alt="">
+						<span>Week</span>
+						<a class="state" (click)="photo2.week=null; weekBox_s = false;" *ngIf="photo2.week">
+							<img src="assets/img/on.svg" alt="">
+						</a>
+						<a class="state" (click)="photo2.week=1; weekBox_s = true;" *ngIf="!photo2.week">
+							<img src="assets/img/off.svg" alt="">
+						</a>
+						<div class="value" *ngIf="photo2.week || weekBox_s">
+							<a (click)="photo2.week = changeValue(photo2.week, 'reduce')">
+								<img style="transform: rotate(90deg);" src="assets/img/ic-minus.svg" alt="">
+							</a>
+							<input type="text" name="weight" [(ngModel)]="photo2.week">
+							<a (click)="photo2.week = changeValue(photo2.week, 'increase')">
+								<img src="assets/img/ic-plus.svg" alt="">
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="caption-area">
+					<p>Write a caption</p>
+					<textarea name="descr" [(ngModel)]="dataProgress.caption"></textarea>
+				</div>
+
+				<div class="bottom-btns">
+					<a class="com-btn" routerLink="/progress">Cancel</a>
+					<a class="com-btn" (click)="save()" [routerLink]="['/progress-share', selectID ? selectID : '' ]">Next</a>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- Progress Content -->
+
+	</div>
+
+</div>

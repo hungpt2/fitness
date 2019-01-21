@@ -1,0 +1,119 @@
+@import '../../gb-mixins'
+@import '../styles/authentication'
+
+.login-wrapper
+	max-width: 720px
+	+resp-max($semi-medium)
+		max-width: 420px
+
+.login-container
+	+resp-max($semi-medium)
+		padding: 0 20px
+
+.login-btn
+	width: 178px
+
+.nutrition-box
+	margin-bottom: 40px
+
+.nutrition-sub-title
+	font-size: 14px
+	color: $accent-color-f
+	margin-top: 0
+
+.nutrition-content
+	background-color: #f8f8f8
+	border-radius: 6px
+	padding: 20px
+	span
+		cursor: pointer
+		font-size: 17px
+		display: inline-block
+		margin-right: 40px
+		.ls-radio
+			display: inline-block
+			width: 18px
+			height: 18px
+			border: 2px solid #c5c5c5
+			border-radius: 100%
+			float: left
+			margin:
+				top: 5px
+				right: 13px
+			div
+				margin: 2px
+				width: 10px
+				height: 10px
+				background-color: $accent-color-s
+				border-radius: 100%
+	+resp-max($semi-medium)
+		span
+			width: 100%
+			display: block
+
+.item
+	position: relative
+	display: block
+	width: 100%
+	margin-bottom: 10px
+	.check
+		float: left
+		display: inline-block
+		width: 18px
+		height: 18px
+		border: 2px solid #c5c5c5
+		border-radius: 3px
+		background-color: #fff
+		margin:
+			top: 5px
+			right: 10px
+		img
+			width: 14.5px
+			height: 12px
+			vertical-align: top
+			margin-top: 1px
+	.check-selected
+		border-color: $accent-color-s
+		background-color: $accent-color-s
+
+.food-box
+	margin-bottom: 20px
+	.food-title
+		font-size: 18px
+		text-transform: uppercase
+		margin:
+			top: 0
+			bottom: 15px
+		font-family: 'Antonio'
+		font-weight: 600
+
+.signup-btn-container
+	margin-top: 35px
+
+.nutrition-pop-up
+	position: relative
+	display: inline-block
+	.pop-up
+		background-color: #fff
+		text-align: center
+		position: absolute
+		bottom: 35px
+		box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12)
+		border-radius: 6px
+		font-size: 12px
+		padding: 4px
+		width: 100px
+		left: 0
+		right: 0
+		margin: auto
+		display: none
+		img
+			display: block
+			width: 15px
+			height: auto
+			position: absolute
+			bottom: -9px
+			left: 38%
+	&:hover
+		.pop-up
+			display: block

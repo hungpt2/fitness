@@ -1,0 +1,46 @@
+@import '../../gb-mixins'
+@import '../styles/authentication'
+
+.ls-forgot-control
+	.remember-btn
+		color: #131825
+		.check
+			float: left
+			display: inline-block
+			width: 18px
+			height: 18px
+			border: 2px solid #c5c5c5
+			border-radius: 3px
+			background-color: #fff
+			margin:
+				top: 4px
+				right: 10px
+			img
+				width: 14.5px
+				height: 12px
+				vertical-align: top
+				margin-top: 1px
+		.check-selected
+			border-color: $accent-color-s
+			background-color: $accent-color-s
+		&:hover
+			color: #131825
+		+resp-max($small)
+			display: block
+
+	.forgot-btn
+		float: right
+		color: $accent-color-f
+		+resp-max($small)
+			float: none
+			margin: 10px 0
+
+.ls-sign-in-control
+	text-align: center
+	p
+		display: inline-block
+		margin: 5px 4px
+	.sign-up-btn
+		color: $accent-color-f
+
+

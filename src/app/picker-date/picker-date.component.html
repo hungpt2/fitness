@@ -1,0 +1,32 @@
+<div class="simple-view">
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <div class="simple-container">
+            <div class="title-container">
+              <p class="title">Date Picker</p>
+              <div class="btn-container">
+                <a class="close-btn" (click)="closePopup.emit(false)">
+                  <img src="assets/img/ic-close-red.svg" alt="">
+                </a>
+              </div>
+            </div>
+
+            <div class="main-container">
+              <form name="form" (ngSubmit)="onNext()" novalidate>
+                <div class="ls-form-control">
+                  <input class="select-day" placeholder="Click to select day" type="text" id="datepicker">
+                </div>
+                <div class="signup-btn-container">
+                  <button type="submit" class="login-btn">Go</button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

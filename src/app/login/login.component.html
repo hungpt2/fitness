@@ -1,0 +1,46 @@
+<nav class="login-navbar">
+	<div class="logo-container">
+		<img src="assets/img/logo.png" alt="">
+	</div>
+	<a class="sign-in-btn" routerLink="/sign-up">Sign Up</a>
+</nav>
+
+<div class="login-container">
+	<div class="login-wrapper">
+		<p>New to the LSF Online Training Platform ?</p>
+		<button type="submit" class="login-btn" routerLink="/sign-up">Create Your Account</button>
+	</div>
+</div>
+<div class="login-container">
+	<div class="login-wrapper">
+		<h2 class="caption">Welcome Back!</h2>
+		<!-- <form> -->
+		<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+			<div class="ls-form-control">
+				<input [(ngModel)]="login.email" type="email" name="email" #email="ngModel" required>
+				<label>Email address</label>
+				<div *ngIf="f.submitted && !email.valid" class="help-block">Email required</div>
+			</div>
+			<div class="ls-form-control">
+				<input [(ngModel)]="login.password" type="password" name="password" #password="ngModel" required>
+				<label>Password</label>
+				<div *ngIf="f.submitted && !password.valid" class="help-block">Password required</div>
+			</div>
+			<div class="ls-forgot-control">
+				<a class="remember-btn" (click)="remember = remember ? false : true;">
+					<div class="check" [class.check-selected]="remember">
+						<img *ngIf="remember" src="assets/img/check-mark.svg" alt="">
+					</div>
+					<span>Remember Me</span>
+				</a>
+				<a class="forgot-btn" routerLink="/forgot-password">Forgot Password?</a>
+			</div>
+			<button type="submit" class="login-btn">Log In</button>
+			<div class="ls-sign-in-control">
+				<p>Don't have an account?</p>
+				<a class="sign-up-btn" routerLink="/sign-up">Sign up!</a>
+			</div>
+		</form>
+		<!-- </form> -->
+	</div>
+</div>

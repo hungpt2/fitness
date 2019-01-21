@@ -1,0 +1,24 @@
+<!-- You can now use your library component in app.component.html -->
+<p class="headding">
+  Choose Your Meal Plan
+</p>
+<p class="description">
+  * The selections below show the calories and macronutrients in an average day of your meal plan. The meals in your plan will
+  be different to the ones in the picture.
+</p>
+<p>
+  Press ‘Next’ once you have made your selection.
+</p>
+<ngx-slick-carousel class="carousel slide-meals-plan" #slickModal="slick-carousel" [config]="slideConfig" (afterChange)="afterChange($event)">
+  <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+    <img class="image-slider" src="{{ slide.img }}" alt="" width="100%">
+  </div>
+</ngx-slick-carousel>
+<div class="wrapper-button">
+  <button class="arrow arrow-prev" (click)="slickModal.slickPrev(); false">
+    <i class="icon-arrow"></i>
+  </button>
+  <button class="arrow arrow-next" (click)="slickModal.slickNext(); false">
+    <i class="icon-arrow"></i>
+  </button>
+</div>

@@ -1,0 +1,145 @@
+<app-sidebar></app-sidebar>
+
+<div class="ls-container">
+
+	<div class="ls-navbar-container">
+		<main class="ls-navbar-main">
+			<div class="container">
+				<div class="ls-nv-content">
+					<div class="ls-navbar-title">
+						<h2>Meals</h2>
+					</div>
+					<div class="ls-navbar-date">
+						<div class="meals-view">
+							<a class="arrow arrow-prev" [routerLink]="['/meals', nextWeek(-1)]">
+								<i class="icon-arrow"></i>
+							</a>
+							<a class="week-btn">{{mealsPlanWeek.name}}</a>
+							<a class="arrow arrow-next" [routerLink]="['/meals', nextWeek(1)]">
+								<i class="icon-arrow"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+	<!-- Navbar Conteiner -->
+
+	<div class="ls-content">
+
+		<div class="container">
+
+			<div class="btn-container">
+				<a class="siple-view" (click)="sipmleView = true;">Simplified View</a>
+				<a class="siple-view" (click)="sendMail()">
+					<img src="assets/img/ic-email.svg" alt="">
+				</a>
+				<a class="siple-view" (click)="sipmleView = true;printElem(true)">
+					<img src="assets/img/ic-print.svg" alt="">
+				</a>
+
+			</div>
+
+			<div class="row">
+				<div class="col-md-6" *ngFor="let meal of meals">
+					<div class="meals-content">
+						<h3 class="td-box-title">{{meal.name}}</h3>
+						<a class="dt-btn" (click)="onSelect(meal)" [routerLink]="['/meals-detail', meal.id]">
+							<img src="assets/img/btn-actions-normal.svg" alt="">
+						</a>
+						<h4 class="td-box-subtitle">Daily Macronutrients</h4>
+						<p class="td-box-components">{{meal.daily_nutrients.calories_sum | round}} kcal
+							<span class="spacer"></span>{{meal.daily_nutrients.carb_sum | round}}g Carbs
+							<span class="spacer"></span>{{ meal.daily_nutrients.fat_sum | round}}g Fat
+							<span class="spacer"></span>{{meal.daily_nutrients.protein_sum | round}}g Protein</p>
+						<div class="dragscroll box-container">
+							<a (click)="onSelect(meal)" [routerLink]="['/meals-detail', meal.id]">
+								<div class="box-image" *ngFor="let meal_item of meal.meal_plan_day; let i = index">
+									<img src="{{ meal_item.image_url }}" alt="">
+									<p class="title">Meal {{i+1}}</p>
+									<a class="check-btn" *ngIf="meal.doneState1">
+										<img src="assets/img/ic-complete.svg" alt="">
+									</a>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="simple-view" id="simple-view" *ngIf="sipmleView">
+
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<div class="simple-container" [ngStyle]="{'height': simpleHeight}">
+
+						<div class="title-container">
+							<p class="title">Simplified View</p>
+							<div class="btn-container">
+								<a class="square-btn" (click)="sendMail()">
+									<img src="assets/img/ic-email.svg" alt="">
+								</a>
+								<a class="square-btn" (click)="printElem()">
+									<img src="assets/img/ic-print.svg" alt="">
+								</a>
+								<a class="close-btn" (click)="sipmleView = false">
+									<img src="assets/img/ic-close-red.svg" alt="">
+								</a>
+							</div>
+						</div>
+
+						<div class="main-container" id="main-container">
+
+							<h2 class="gn-title">{{mealsPlanWeek.name}}</h2>
+
+							<div *ngFor="let meal of meals" class="wrapper">
+								<h3 class="td-box-title">{{meal.name}}</h3>
+								<h4 class="td-box-subtitle">Daily Macronutrients</h4>
+								<p class="td-box-components">{{meal.daily_nutrients.calories_sum | round}} kcal
+									<span class="spacer"></span>{{meal.daily_nutrients.carb_sum | round}}g Carbs
+									<span class="spacer"></span>{{ meal.daily_nutrients.fat_sum | round}}g Fat
+									<span class="spacer"></span>{{meal.daily_nutrients.protein_sum | round}}g Protein</p>
+								<div class="meal-wrapper" *ngFor="let meal_item of meal.meal_plan_day; let i = index">
+									<h3 class="td-box-title">Meal {{i + 1}}</h3>
+									<h4 class="td-box-subtitle">MACRONUTRIENTS - MEAL {{i + 1}}</h4>
+									<p class="td-box-components">{{meal_item.sum_nutrients.calories_sum | round}} kcal
+										<span class="spacer"></span>{{meal_item.sum_nutrients.carb_sum | round}}g Carbs
+										<span class="spacer"></span>{{meal_item.sum_nutrients.fat_sum | round}}g Fat
+										<span class="spacer"></span>{{meal_item.sum_nutrients.protein_sum | round}}g Protein</p>
+
+									<div class="ingredients">
+										<p class="title">Ingredients</p>
+										<ul>
+											<ng-container *ngFor="let item of meal_item.items;">
+												<li *ngIf="!meal_item.isSpecial">
+													<span class="spacer"></span>{{titleIngredient(item)}}
+												</li>
+												<ng-container *ngIf="meal_item.isSpecial">
+													<li *ngFor="let itemIngredient of item.meal_food_item.recipe_ingredients;">
+														<span class="spacer"></span>{{itemIngredient}}
+													</li>
+												</ng-container>
+											</ng-container>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

@@ -1,0 +1,268 @@
+<app-sidebar [hidePlan]="hidePlan"></app-sidebar>
+
+<div class="ls-container">
+
+  <div class="ls-navbar-container">
+    <main class="ls-navbar-main">
+      <div class="container">
+        <div class="ls-nv-content">
+          <div class="ls-navbar-title">
+            <h2>Dashboard</h2>
+          </div>
+
+          <div class="ls-navbar-date">
+            <div class="dashboard-view" *ngIf="!hidePlan && planReady">
+              <span class="cursor-pointer" (click)="!hidePlan && showPopupDate = !showPopupDate;" *ngIf="workouts">Day {{day_number}}</span>
+              <a *ngIf="workouts">Week {{week_number}}</a>
+            </div>
+            <div class="dashboard-view" *ngIf="showButtonStartPlan && !planReady">
+              <a (click)="showStartPlanModal = true">Start Plan</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <!-- Navbar Conteiner -->
+
+  <div class="ls-content">
+    <app-dashboard-alert-countdown [timeEnd]="shred_challenge_start_at" *ngIf="hidePlanStart" (zeroTrigger)="triggerShowPlanStart()"></app-dashboard-alert-countdown>
+    <app-progress-alert *ngIf="openAlert" [week]="week_number" (closeAlert)="closeAlertProgress()"></app-progress-alert>
+    <div class="today-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4" *ngIf="!hidePlan && meal && !hidePlanTemp && !isExpired">
+            <div class="today-box today-meal">
+              <h3 class="td-box-title">Today’s Meals</h3>
+              <a class="dt-btn" [routerLink]="['/meals-detail', meals.id]">
+                <img src="assets/img/btn-actions-normal.svg" alt="">
+              </a>
+              <h4 class="td-box-subtitle">Daily Macronutrients</h4>
+              <p class="td-box-components" *ngIf="meal.sum_nutrients">{{meal.sum_nutrients.calories_sum | round}} kcal
+                <span class="spacer"></span>{{meal.sum_nutrients.carb_sum | round}}g Carbs
+                <span class="spacer"></span>{{meal.sum_nutrients.fat_sum | round}}g Fat
+                <span class="spacer"></span>{{meal.sum_nutrients.protein_sum | round}}g Protein</p>
+
+              <div class="box-image">
+                <a [routerLink]="['/meals-detail', meals.id]">
+                  <img src="{{meal.image_url}}" alt="">
+                </a>
+                <p class="title">{{meal.name}}</p>
+                <a class="check-btn" *ngIf="meal.done">
+                  <img src="assets/img/ic-complete.svg" alt="">
+                </a>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-md-4" *ngIf="hidePlan || hidePlanTemp || isExpired">
+            <div class="today-box today-meal">
+              <h3 class="td-box-title">Today’s Meals</h3>
+              <a class="dt-btn" [routerLink]="['/meals-detail']">
+                <img src="assets/img/btn-actions-normal.svg" alt="">
+              </a>
+              <h4 class="td-box-subtitle">Daily Macronutrients</h4>
+              <p class="td-box-components">0 kcal
+                <span class="spacer"></span>0g Carbs
+                <span class="spacer"></span>0g Fat
+                <span class="spacer"></span>0g Protein</p>
+              <div class="box-image">
+                <img src="assets/img/meal3.png" alt="">
+                <p class="title"></p>
+                <a class="check-btn" *ngIf="0">
+                  <img src="assets/img/ic-complete.svg" alt="">
+                </a>
+              </div>
+              <app-dashboard-waiting [skuLabel]="skuLabel" [isExpired]="isExpired" [type]="'meal'" [hidePlanTemp]="hidePlanTemp" [isSpecial]="isSpecial" [isSpecialOveload]="isSpecialOveload"
+                [timeEnd]="dateSignupNormal || shred_challenge_start_at" (zeroTrigger)="triggerShowPlan()"></app-dashboard-waiting>
+            </div>
+          </div>
+          <div class="col-md-4" *ngIf="!hidePlan && workouts && !hidePlanTemp && !isExpired">
+            <div class="today-box today-workout">
+              <h3 class="td-box-title">Today’s Workouts</h3>
+              <a class="dt-btn" *ngIf="workouts" [routerLink]="['/workouts', workouts.week_number, workouts.day_number]">
+                <img src="assets/img/btn-actions-normal.svg" alt="">
+              </a>
+              <h4 class="td-box-subtitle">{{workouts && workouts.name}}</h4>
+              <div class="box-image">
+                <a *ngIf="workouts" [routerLink]="['/workouts', workouts.week_number, workouts.day_number]">
+                  <img src="{{workouts.image_url}}" alt="">
+                </a>
+                <p class="title">{{workouts && workouts.name}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4" *ngIf="hidePlan || hidePlanTemp || isExpired">
+            <div class="today-box today-workout">
+              <h3 class="td-box-title">Today’s Workouts</h3>
+              <a class="dt-btn" *ngIf="workouts" [routerLink]="['/workouts']">
+                <img src="assets/img/btn-actions-normal.svg" alt="">
+              </a>
+              <h4 class="td-box-subtitle"></h4>
+              <div class="box-image">
+                <img src="assets/img/curtsy_lunges.png" alt="">
+                <p class="title"></p>
+              </div>
+              <app-dashboard-waiting [skuLabel]="skuLabel" [isExpired]="isExpired" [type]="'workout'" [hidePlanTemp]="hidePlanTemp" [isSpecial]="isSpecial" [isSpecialOveload]="isSpecialOveload"
+                [timeEnd]="dateSignupNormal || shred_challenge_start_at" (zeroTrigger)="triggerShowPlan()"></app-dashboard-waiting>
+            </div>
+          </div>
+          <ng-container *ngIf="tip">
+            <div class="col-md-4">
+              <div class="today-box today-tips">
+                <h3 class="td-box-title">Today’s Tips</h3>
+                <h4 class="td-box-subtitle" style="text-transform: capitalize">{{tip.title || ''}}</h4>
+                <a [routerLink]="['/tips-detail', tip.id]">
+                  <div class="box-image">
+                    <img src="{{tip.image.url || ''}}" alt="">
+                    <p class="title">{{tip.category|| ''}}</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <!-- Today Content -->
+
+    <div class="chart-content">
+      <div class="container">
+        <div class="row">
+          <app-statistic-item [statistic]="statistic.calories" icon="ic-calories" title="Calories"></app-statistic-item>
+          <app-statistic-item [statistic]="statistic.protein" icon="ic-protein" title="Protein"></app-statistic-item>
+          <app-statistic-item [statistic]="statistic.carb" icon="ic-carbs" title="Carbs"></app-statistic-item>
+          <app-statistic-item [statistic]="statistic.fat" icon="ic-fats" title="Fats"></app-statistic-item>
+        </div>
+      </div>
+    </div>
+    <!-- Chart Content -->
+
+    <div class="container" *ngIf="progress.length">
+      <div class="progress-content">
+        <p class="title">Latest Posts of Progress</p>
+        <a class="view-btn" routerLink="/progress">View All</a>
+        <div class="row dragscroll">
+          <div *ngFor="let progres of progress" class="progress-wrapper">
+            <div class="col-md-3">
+              <div class="progres-box" (click)="onClickEdit(progres)">
+                <div class="img-box">
+                  <p class="img-title" [ngClass]="{'right' : !progres.progress_photos[1]}" *ngIf="progres.progress_photos[0] && progres.progress_photos[0].week || progres.progress_photos[0].weight">
+                    <span *ngIf="progres.progress_photos[0] && progres.progress_photos[0].week">Week {{progres.progress_photos[0].week}}</span>
+                    <span *ngIf="progres.progress_photos[0] && progres.progress_photos[0].weight">{{progres.progress_photos[0].weight}} kg</span>
+                  </p>
+                  <p class="img-title img-title-second" *ngIf=" (progres.progress_photos[1] && progres.progress_photos[1].week) || (progres.progress_photos[1] && progres.progress_photos[1].weight)">
+                    <span *ngIf="progres.progress_photos[1] && progres.progress_photos[1].week">Week {{progres.progress_photos[1].week}}</span>
+                    <span *ngIf="progres.progress_photos[1] && progres.progress_photos[1].weight">{{progres.progress_photos[1].weight}} kg</span>
+                  </p>
+                  <div class="img-container" [class.img-container-separate]="progres.progress_photos[1] && progres.progress_photos[1].photo_url">
+                    <img src="{{progres.progress_photos[0] && progres.progress_photos[0].photo_url || ''}}" alt="">
+                    <img src="{{progres.progress_photos[1] && progres.progress_photos[1].photo_url || ''}}" alt="">
+                  </div>
+                  <div class="soc-icon-container">
+                    <a class="soc-icon" (click)="shareFacebook(progres)" *ngIf="progres && progres.photo">
+                      <img src="assets/img/ic-facebook.svg" alt="">
+                    </a>
+                    <a class="soc-icon" *ngIf="progres.ins">
+                      <img src="assets/img/ic-instagram.svg" alt="">
+                    </a>
+                  </div>
+                </div>
+                <p class="title" *ngIf="progres.caption">{{progres.caption}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container" *ngIf="!progress.length" [style.margin-top]="statistic ? null : '20px'">
+      <div class="progress-content">
+        <p class="title">Latest Posts of Progress</p>
+        <a class="view-btn" routerLink="/progress">View All</a>
+        <div class="row dragscroll">
+          <div class="col-md-3">
+            <div class="progres-box">
+              <div class="img-box">
+                <p class="img-title right">
+                  <span>Week 1</span>
+                </p>
+                <div class="img-container">
+                  <img src="assets/img/Progress Pic 3.jpg" alt="">
+                  <img src="" alt="">
+                </div>
+              </div>
+              <p class="title">How to take your progress photos</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Progress Content -->
+
+  </div>
+
+</div>
+<div class="simple-view" *ngIf="showDelete">
+
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <div class="simple-container">
+            <img class="caption-img" src="assets/img/large.svg" alt="">
+            <p class="content">Are you sure you want to delete this photo?</p>
+            <div>
+              <a class="ls-border-btn ls-grey-btn" (click)="cancel()">Cancel</a>
+              <a class="ls-border-btn ls-red-btn" (click)="deleteProgres(); $event.stopPropagation();">Ok</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<div class="simple-view" *ngIf="showStartPlanModal">
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <div class="simple-container">
+            <img class="caption-img" src="assets/img/large.svg" alt="">
+            <p class="content">Are you sure you want to start the plan?</p>
+            <div>
+              <a class="ls-border-btn ls-grey-btn" (click)="showStartPlanModal = false">Cancel</a>
+              <a class="ls-border-btn ls-red-btn" (click)="showStartPlanModal = false; startPlan()">Ok</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="simple-view modal-start-plan" *ngIf="showButtonStartPlan && !planReady && !hideModalstartPlan">
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <div class="simple-container">
+              <div class="btn-container">
+                <a class="close-btn" (click)="hideModalstartPlan = true">
+                  <img src="assets/img/ic-close-red.svg" alt="">
+                </a>
+              </div>
+            <h2 class="caption">Greate news!</h2>
+            <p class="content">Your meal plan and training plan are ready.</p>
+            <div>
+              <a class="ls-border-btn ls-red-btn" (click)="showStartPlanModal = true; hideModalstartPlan= true">START NOW</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-picker-date (closePopup)="showPopupDate = false;" (onSubmit)="onSelectDay($event)" *ngIf="showPopupDate"></app-picker-date>
+<app-popup-edit-progress (onDelete)="delete($event)" [progres]="progresEdit" (closePopup)="showEditProgress = false;" *ngIf="showEditProgress"></app-popup-edit-progress>

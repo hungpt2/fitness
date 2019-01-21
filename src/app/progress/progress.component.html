@@ -1,0 +1,106 @@
+<app-sidebar></app-sidebar>
+
+<div class="ls-container">
+
+  <div class="ls-navbar-container">
+    <main class="ls-navbar-main">
+      <div class="container">
+        <div class="ls-nv-content">
+          <div class="ls-navbar-title">
+            <h2>Progress</h2>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <!-- Navbar Conteiner -->
+
+  <div class="ls-content">
+
+    <div class="container">
+      <div class="btn-container">
+        <button class="siple-view" routerLink="/progress-upload">Upload Photo</button>
+      </div>
+
+      <div class="progress-content">
+        <p class="title">Posts of Progress</p>
+        <div class="row">
+          <div>
+            <div class="col-md-3" *ngIf="!progress|| !(progress && progress.length)">
+              <div class="progres-box">
+                <div class="img-box">
+                  <p class="img-title right">
+                    <span>How to take your progress photos</span>
+                  </p>
+                  <div class="img-container">
+                    <img src="assets/img/Progress Pic 3.jpg" alt="">
+                    <img src="" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngFor="let progres of progress">
+            <div class="col-md-3" *ngIf="progres">
+              <div class="progres-box cursor-hover" (click)="onClickEdit(progres)">
+                <div class="img-box">
+                  <p class="img-title" [ngClass]="{'right' : !progres.progress_photos[1]}"
+                    *ngIf="(progres.progress_photos[0] && progres.progress_photos[0].week) || (progres.progress_photos[0] && progres.progress_photos[0].weight)">
+                    <span *ngIf="progres.progress_photos[0].week">Week {{progres.progress_photos[0].week}}</span>
+                    <span *ngIf="progres.progress_photos[0].weight">{{progres.progress_photos[0].weight}} kg</span>
+                  </p>
+                  <ng-container *ngIf="progres.progress_photos[1]">
+                    <p class="img-title img-title-second" *ngIf="(progres.progress_photos[1] && progres.progress_photos[1].week) || ( progres.progress_photos[1] && progres.progress_photos[1].weight)">
+                      <span *ngIf="progres.progress_photos[1].week">Week {{progres.progress_photos[1].week}}</span>
+                      <span *ngIf="progres.progress_photos[1].weight">{{progres.progress_photos[1].weight}} kg</span>
+                    </p>
+                  </ng-container>
+                  <div class="img-container" [class.img-container-separate]="progres.progress_photos[1] && progres.progress_photos[1].photo_url">
+                    <img src="{{progres.progress_photos[0] && progres.progress_photos[0].photo_url}}" alt="">
+                    <img src="{{progres.progress_photos[1] && progres.progress_photos[1].photo_url}}" alt="">
+                  </div>
+                </div>
+                <p class="title" *ngIf="progres.caption">{{progres.caption}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="upload-container">
+          <a class="upload" routerLink="/progress-upload">
+            <img src="assets/img/upload.svg" alt="">
+            <p>Upload Photo</p>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- Progress Content -->
+
+  </div>
+
+</div>
+
+<div class="simple-view" *ngIf="showDelete">
+
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <div class="simple-container">
+            <img class="caption-img" src="assets/img/large.svg" alt="">
+            <p class="content">Are you sure you want to delete this photo?</p>
+            <div>
+              <a class="ls-border-btn ls-grey-btn" (click)="cancel()">Cancel</a>
+              <a class="ls-border-btn ls-red-btn" (click)="deleteProgres(); $event.stopPropagation();">Ok</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<app-popup-edit-progress (onDelete)="delete($event)" [progres]="progresEdit" (closePopup)="showEditProgress = false;" *ngIf="showEditProgress"></app-popup-edit-progress>
+<!-- Simple View -->

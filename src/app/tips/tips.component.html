@@ -1,0 +1,43 @@
+<app-sidebar></app-sidebar>
+
+<div class="ls-container">
+
+  <div class="ls-navbar-container">
+    <main class="ls-navbar-main">
+      <div class="container">
+        <div class="ls-nv-content">
+          <div class="ls-navbar-title">
+            <h2>Tips</h2>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <!-- Navbar Conteiner -->
+
+  <div class="ls-content">
+    <div class="container">
+      <div class="btn-container">
+        <p class="title">CATEGORIES</p>
+      </div>
+      <div class="category-container">
+        <a class="cat-item" [ngClass]="{ 'active-cat' : filterBy==cat}" (click)="filterTipBy(cat);" *ngFor="let cat of categories;">{{cat}}</a>
+      </div>
+      <div class="row">
+        <div *ngFor="let tip of tips">
+          <div class="col-md-4">
+            <div class="tips-content">
+              <p class="title">{{tip.title}}</p>
+              <a [routerLink]="['/tips-detail', tip.id]">
+                <div class="box-image">
+                  <img [src]="tip && tip.image_url || ''" alt="">
+                  <p class="title">{{tip.category}}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

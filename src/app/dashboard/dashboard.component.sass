@@ -1,0 +1,256 @@
+@import '../../gb-mixins'
+
+.today-box
+	text-align: left
+	background-color: #fff
+	display: block
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12)
+	padding: 20px
+	vertical-align: top
+	position: relative
+	.box-image
+		margin-top: 3px
+		//height: 250px
+		overflow: hidden
+		img
+			width: 100%
+			height: 100%
+		+resp-min($extra-large)
+			height: 280px
+		+resp-max($large)
+			height: 200px
+		+resp-max($medium)
+			height: auto
+
+	+resp-max($medium)
+		width: 100%
+		max-width: 410px
+		margin-bottom: 30px
+		display: inline-block
+
+	+resp-max($small)
+		margin-bottom: 20px
+
+.today-meal
+	.td-box-subtitle
+		height: 25px
+		overflow: hidden
+	.td-box-components
+		line-height: 1.2
+		height: 41px
+		overflow: hidden
+		margin-bottom: 0
+
+.today-workout,
+.today-tips
+	.td-box-subtitle
+		height: 67px
+		overflow: hidden
+
+.chart-content
+	margin: 30px 0
+	+resp-max($medium)
+		margin: 15px 0 45px
+	+resp-max($semi-medium)
+		margin:
+			top: 0
+			bottom: 30px
+	+resp-max($small)
+		margin: 0px 0px 20px
+
+.progress-content
+	position: relative
+	padding: 20px 20px 0px
+	background-color: #fff
+	text-align: left
+	margin: auto
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12)
+	.row
+		margin-top: 5px
+	.title
+		font-size: 18px
+		font-weight: 600
+		margin: 0
+		display: inline-block
+		text-transform: uppercase
+	.view-btn
+		width: 85px
+		height: 34px
+		border-radius: 30px
+		border: solid 2px #e6e6e8
+		color: $accent-color-f
+		font-family: $accent-font
+		font-size: 14px
+		float: right
+		margin-top: -3px
+		line-height: 2.2
+		text-align: center
+
+	.progres-box
+		margin: 10px 0
+		display: inline-block
+		vertical-align: top
+		.img-box
+			position: relative
+			.img-container
+				margin-bottom: 12px
+				img
+					width: 100%
+					height: 185px
+					&:last-child
+						display: none
+					+resp-min($large)
+						height: 180px
+					+resp-min($extra-large)
+						height: 215px
+					+resp-max($large)
+						height: 160px
+					+resp-max($medium)
+						height: auto
+			.img-container-separate
+				img
+					width: 50%
+					&:last-child
+						display: inline-block
+						float: right
+			.soc-icon-container
+				position: absolute
+				top: 5px
+				right: 5px
+				.soc-icon
+					display: inline-block
+					background-color: #fff
+					border-radius: 100%
+					width: 22px
+					height: 22px
+					text-align: center
+					line-height: 1.1
+					box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+					img
+						width: 12px
+						height: 12px
+					&:last-child
+						right: 33px
+			.img-title
+				position: absolute
+				text-align: center
+				bottom: 0
+				right: 50%
+				font-size: 15px
+				font-weight: 600
+				color: #fff
+				text-transform: uppercase
+				background-color: #ee212e
+				display: inline-block
+				padding: 5px 12px
+				span
+					display: block
+			.img-title.right
+				right: 0
+			.img-title-second
+				right: 0
+		.title
+			margin: 0
+			font-size: 14px
+			font-family: $accent-font
+			text-transform: none
+			display: block
+			height: 25px
+			overflow: hidden
+		.tags
+			font-size: 14px
+			color: #929292
+			font-family: $accent-font
+			margin: 0
+			height: 50px
+			overflow: hidden
+
+	+resp-max($medium)
+		width: 100%
+		max-width: 410px
+		padding-bottom: 15px
+		.progress-wrapper
+			display: inline-block
+		.row
+			white-space: nowrap
+			overflow-x: auto
+			vertical-align: top
+			width: 100%
+			margin-left: 0px
+			&::-webkit-scrollbar
+				background-color: #f3f4f8
+				height: 6px
+				border-radius: 3px
+			&::-webkit-scrollbar-thumb
+				background-color: $accent-color-s
+				border-radius: 3px
+		.progress-wrapper
+			width: 95%
+		.progres-box
+			width: 96%
+			margin: 20px 0
+			.img-box
+				.img-container
+					height: 300px
+					img
+						height: 100%
+				.img-container-separate
+					img
+						&:last-child
+							margin-left: -4px
+							float: none
+			.tags
+				height: 25px
+		.col-md-3
+			width: 98%
+			padding: 0
+			display: inline-block
+
+	+resp-max($small)
+		.row
+			margin-top: 0
+		.title
+			display: block
+		.view-btn
+			float: none
+			margin: 10px 0 0
+		.progres-box
+			.img-box
+				.img-container
+					height: 260px
+
+.simple-view
+	&.modal-start-plan
+		background-color: rgba(64, 64, 64, 0.5)
+		.simple-container,.ls-border-btn
+			border-radius: 0px
+		.caption
+			color: #eb1d29
+		.ls-border-btn
+			padding: 10px 45px;
+			width: 150px!important
+	.simple-container
+		max-width: 420px
+		text-align: center
+		height: auto
+		padding: 20px
+		box-shadow: 0 24px 24px 0 rgba(0, 0, 0, 0.2), 0 0 24px 0 rgba(0, 0, 0, 0.12)
+		border-radius: 8px
+		.caption-img
+			width: 40px
+			height: 40px
+		.content
+			font-size: 17px
+			font-family: $accent-font
+			color: #0f121b
+		.ls-border-btn
+			margin: 20px 5px 0
+			padding:
+				left: 0
+				right: 0
+			width: 134px
+
+	+resp-max($small)
+		.simple-container
+			width: 90%
+

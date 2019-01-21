@@ -1,0 +1,199 @@
+@import '../../gb-mixins'
+
+.ls-navbar-title
+	+resp-max($medium)
+		display: block
+
+.progress-content
+	position: relative
+	padding: 20px 20px
+	background-color: #fff
+	text-align: left
+	margin: auto
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12)
+
+	.progres-box
+		margin: 10px 0
+		display: inline-block
+		.img-box
+			position: relative
+			.img-container
+				margin-bottom: 12px
+				img
+					width: 100%
+					height: 185px
+					&:last-child
+						display: none
+					+resp-min($large)
+						height: 180px
+					+resp-min($extra-large)
+						height: 215px
+					+resp-max($large)
+						height: 160px
+					+resp-max($medium)
+						height: 370px
+					+resp-max(440px)
+						height: 300px
+			.img-container-separate
+				img
+					width: 50%
+					&:last-child
+						display: inline-block
+						float: right
+			.soc-icon-container
+				position: absolute
+				top: 5px
+				right: 5px
+				.soc-icon
+					display: inline-block
+					background-color: $accent-color-s
+					border-radius: 100%
+					width: 22px
+					height: 22px
+					text-align: center
+					line-height: 1.15
+					box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+					img
+						width: 12px
+						height: 12px
+			.img-title
+				position: absolute
+				text-align: center
+				bottom: 0
+				right: 50%
+				font-size: 13px
+				font-weight: 600
+				color: #fff
+				text-transform: uppercase
+				background-color: $accent-color-s
+				display: inline-block
+				padding: 6px 10px
+				line-height: 1.3
+				span
+					display: block
+			.img-title.right
+				right: 0
+			.img-title-second
+				right: 0
+		.title
+			margin: 0
+			font-size: 14px
+			font-family: $accent-font
+			text-transform: none
+			display: block
+			height: 25px
+			overflow: hidden
+		.tags
+			font-size: 14px
+			color: #929292
+			font-family: $accent-font
+			margin: 0
+			height: 50px
+			overflow: hidden
+			line-height: 1.15
+
+	.link-container
+		.item
+			font-weight: 600
+			font-size: 18px
+			color: #e6e6e8
+			text-transform: uppercase
+			display: inline-block
+			margin: 0px 0px 35px
+		.item-active
+			color: $accent-color-s
+		.hr-line
+			margin: 0px 8px 6px
+			width: 48px
+			height: 2px
+			background-color: #e6e6e8
+			display: inline-block
+
+	.select-container
+		width: 300px
+		.select
+			width: 300px
+			height: 300px
+			border: dashed 2px #e6e6e8
+			text-align: center
+			background-image: url(../../assets/img/picture.svg)
+			background-size: 80px auto
+			background-repeat: no-repeat
+			background-position: center center
+			position: relative
+			img
+				width: 100%
+				height: 100%
+		.select:not(.select-two-images)
+			&:nth-child(2)
+				display: none
+		.select-two-images
+			width: 147px
+			height: 300px
+			display: inline-block
+			vertical-align: top
+			+resp-max($small)
+				width: 120px !important
+
+	.com-btn
+		display: block
+		height: 44px
+		border-radius: 6px
+		border: solid 2px #e6e6e8
+		text-align: center
+		line-height: 2.3
+		font-family: $accent-font
+		font-size: 17px
+		color: $accent-color-f
+		margin: 15px 0
+		background-color: #fff
+		width: 100%
+		span
+			margin-left: 5px
+		i
+			display: inline-block
+	.active-com-btn
+		background-color: $accent-color-f
+		color: #fff
+		border-color: $accent-color-f
+
+	.bottom-btns
+		text-align: right
+		margin-top: 70px
+		.com-btn
+			width: 120px
+			display: inline-block
+			margin-left: 20px
+			&:last-child
+				background-color: $accent-color-f
+				border-color: $accent-color-f
+				color: #fff
+
+	+resp-min($extra-large)
+		.progres-box
+			.tags
+				height: 40px
+
+	+resp-max($medium)
+		width: 100%
+		max-width: 410px
+		.progres-box
+			width: 100%
+
+	+resp-max($small)
+		.link-container
+			.item
+				display: none
+			.hr-line
+				display: none
+			.item-active
+				display: block
+				margin-bottom: 20px
+		.bottom-btns
+			text-align: center
+			margin-top: 50px
+			.com-btn
+				width: 114px
+				margin:
+					left: 4px
+					right: 4px

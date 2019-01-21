@@ -1,0 +1,73 @@
+<nav class="login-navbar">
+		<div class="logo-container">
+			<img src="assets/img/logo.png" alt="">
+		</div>
+		<a class="sign-in-btn" routerLink="/login">Log in</a>
+</nav>
+
+<div class="login-container">
+	<div class="login-wrapper">
+		<app-header-sign-up [step]="3"></app-header-sign-up>
+		<div class="nutrition-box">
+			<p class="nutrition-title">Number of workouts per week?</p>
+			<div class="nutrition-content">
+				<span (click)="workouts = 3"><div class="ls-radio" [style.border-color]="workouts == 3 ? '#ee212e' : '#c5c5c5'"><div *ngIf="workouts == 3"></div></div> 3</span>
+				<span (click)="workouts = 4"><div class="ls-radio" [style.border-color]="workouts == 4 ? '#ee212e' : '#c5c5c5'"><div *ngIf="workouts == 4"></div></div> 4</span>
+				<span (click)="workouts = 5"><div class="ls-radio" [style.border-color]="workouts == 5 ? '#ee212e' : '#c5c5c5'"><div *ngIf="workouts == 5"></div></div> 5</span>
+				<span (click)="experience !== 'Beginner' && workouts = 6"><div class="ls-radio" [style.border-color]="workouts == 6 ? '#ee212e' : '#c5c5c5'"><div *ngIf="workouts == 6"></div></div> 6</span>
+			</div>
+		</div>
+		<div class="nutrition-box">
+			<p class="nutrition-title">What is your experience level with weights training?</p>
+			<div class="nutrition-content">
+				<span class="nutrition-pop-up" 
+					(click)="experience = 'Beginner'; workouts === 6 && workouts = 4"
+				>
+					<div class="ls-radio" 
+						[style.border-color]="experience == 'Beginner' ? '#ee212e' : '#c5c5c5'">
+						<div *ngIf="experience == 'Beginner'"></div>
+					</div> 
+					Beginner
+					<div class="pop-up">Less than <br/>6 months <img src="assets/img/down-white-arrow.svg" alt=""></div>
+				</span>
+				<span class="nutrition-pop-up" 
+					(click)="experience = 'Intermediate'"
+				>
+					<div class="ls-radio" 
+						[style.border-color]="experience == 'Intermediate' ? '#ee212e' : '#c5c5c5'">
+						<div *ngIf="experience == 'Intermediate'"></div>
+					</div> 
+					Intermediate
+					<div class="pop-up">6-12 months <img src="assets/img/down-white-arrow.svg" alt=""></div>
+				</span>
+				<span class="nutrition-pop-up" 
+					(click)="experience = 'Advanced'">
+					<div class="ls-radio" 
+						[style.border-color]="experience == 'Advanced' ? '#ee212e' : '#c5c5c5'">
+						<div *ngIf="experience == 'Advanced'"></div>
+					</div> 
+					Advanced
+					<div class="pop-up">More than <br/>12 months <img src="assets/img/down-white-arrow.svg" alt=""></div>
+				</span>
+			</div>
+		</div>
+		<div class="nutrition-box">
+			<p class="nutrition-title">How much time do you have to train per workout?</p>
+			<div class="nutrition-content">
+				<span (click)="time = 45"><div class="ls-radio" [style.border-color]="time == 45 ? '#ee212e' : '#c5c5c5'"><div *ngIf="time == 45"></div></div> < 45 min</span>
+				<span (click)="time = 60"><div class="ls-radio" [style.border-color]="time == 60 ? '#ee212e' : '#c5c5c5'"><div *ngIf="time == 60"></div></div> 60 min</span>
+				<span (click)="time = 70"><div class="ls-radio" [style.border-color]="time == 70 ? '#ee212e' : '#c5c5c5'"><div *ngIf="time == 70"></div></div> > 60 min</span>
+			</div>
+		</div>
+		<div class="nutrition-box">
+			<p class="nutrition-title">Do you like to train using circuits?</p>
+			<div class="nutrition-content">
+				<span (click)="circuits = true"><div class="ls-radio" [style.border-color]="circuits ? '#ee212e' : '#c5c5c5'"><div *ngIf="circuits"></div></div> Yes</span>
+				<span (click)="circuits = false"><div class="ls-radio" [style.border-color]="!circuits ? '#ee212e' : '#c5c5c5'"><div *ngIf="!circuits"></div></div> No</span>
+			</div>
+		</div>
+		<div class="signup-btn-container">
+			<button type="submit" class="login-btn" (click)="onSubmit()">Next</button>
+		</div>
+	</div>
+</div>
